@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Firemná príručka</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Preskočiť na obsah</a>
+
+  <header class="app-header">
+    <div class="wrap">
+      <h1 id="app-title">Firemná príručka</h1>
+      <p id="app-updated" class="muted"></p>
+    </div>
+  </header>
+
+  <main id="main" class="wrap" tabindex="-1">
+    <!-- Navigácia (drobčeková) -->
+    <nav id="breadcrumb" class="breadcrumb" aria-label="Navigácia">
+      <button type="button" id="home-btn" class="crumb-link">Kategórie</button>
+      <span id="breadcrumb-tail"></span>
+    </nav>
+
+    <!-- Stavové/chybové hlásenie -->
+    <p id="status" class="status" role="status" aria-live="polite">Načítavam obsah…</p>
+
+    <!-- Dynamický obsah: kategórie / položky / detail -->
+    <section id="view" aria-labelledby="view-heading">
+      <h2 id="view-heading" class="visually-hidden">Obsah príručky</h2>
+      <div id="view-content"></div>
+    </section>
+
+    <!-- Navrhované úlohy -->
+    <section id="suggested" class="suggested" aria-labelledby="suggested-heading">
+      <h2 id="suggested-heading">Navrhované úlohy</h2>
+      <ul id="suggested-list" class="suggested-list"></ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="wrap">
+      <p class="muted">Interná firemná príručka · obsah sa upravuje cez <code>content.json</code></p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

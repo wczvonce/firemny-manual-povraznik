@@ -1,0 +1,7 @@
+# Prílohy sú binárne — žiadna EOL normalizácia (chráni PDF/obrázky pred poškodením)
+*.pdf binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.mp4 binary
+*.mp3 binary

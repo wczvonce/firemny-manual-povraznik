@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "title": "Firemná príručka",
+    "lang": "sk",
+    "updated_at": "2026-08-30T01:00:00+02:00"
+  },
+  "categories": [
+    { "id": "prerabka", "name": "Prerábka & zariaďovanie" },
+    { "id": "sprava-booking", "name": "Správa & booking" },
+    { "id": "stavkovanie", "name": "Stávkovanie" },
+    { "id": "skilly", "name": "Skilly" },
+    { "id": "ine", "name": "Iné" }
+  ],
+  "items": [
+    {
+      "id": "prijem-novej-jednotky",
+      "category": "prerabka",
+      "title": "Príjem novej jednotky na prerábku",
+      "body_type": "steps",
+      "steps": [
+        "Odfoť pôvodný stav miestností (každá miestnosť aspoň 2 zábery).",
+        "Zapíš rozmery a chýbajúce vybavenie do zdieľanej tabuľky.",
+        "Priprav zoznam nákupov a pošli ho Ivanovi na schválenie.",
+        "Po schválení objednaj materiál a naplánuj termín remeselníkov."
+      ],
+      "attachments": [
+        { "type": "pdf", "path": "assets/ukazka.pdf", "label": "Kontrolný zoznam pri príjme (PDF)" }
+      ],
+      "updated_at": "2026-08-30T01:00:00+02:00"
+    },
+    {
+      "id": "checkin-hosta",
+      "category": "sprava-booking",
+      "title": "Check-in hosta cez Booking",
+      "body_type": "steps",
+      "steps": [
+        "Skontroluj rezerváciu a čas príchodu v Booking.com extranete.",
+        "Priprav kľúče a uvítací balíček.",
+        "Pošli hosťovi správu s adresou a inštrukciami k parkovaniu.",
+        "Po odchode hosťa označ jednotku ako 'na upratovanie'."
+      ],
+      "attachments": [
+        { "type": "image", "path": "assets/ukazka.jpg", "label": "Foto uvítacieho balíčka" }
+      ],
+      "updated_at": "2026-08-30T01:00:00+02:00"
+    },
+    {
+      "id": "zaklady-stavkovania",
+      "category": "stavkovanie",
+      "title": "Základné pravidlá stávkovania",
+      "body_type": "text",
+      "text": "Stávkuj len zo schváleného rozpočtu a nikdy neprekračuj denný limit. Každú stávku zapíš do evidencie: dátum, zápas, kurz, vklad a výsledok. Ak si nie si istá, radšej stávku nedávaj a napíš Ivanovi.",
+      "attachments": [
+        { "type": "video", "path": "assets/navod.mp4", "label": "Videonávod k evidencii (čoskoro)" }
+      ],
+      "updated_at": "2026-08-30T01:00:00+02:00"
+    },
+    {
+      "id": "komunikacia-s-hostami",
+      "category": "skilly",
+      "title": "Komunikácia s hosťami",
+      "body_type": "text",
+      "text": "Odpovedaj rýchlo a slušne, ideálne do jednej hodiny. Buď konkrétna: uveď čas, adresu a jasné inštrukcie. Pri sťažnosti sa najprv ospravedlň, potom navrhni riešenie. Zložité prípady vždy eskaluj Ivanovi.",
+      "attachments": [],
+      "updated_at": "2026-08-30T01:00:00+02:00"
+    },
+    {
+      "id": "kontakty-a-heslo-wifi",
+      "category": "ine",
+      "title": "Dôležité kontakty a postup pri poruche",
+      "body_type": "steps",
+      "steps": [
+        "Pri poruche (voda, elektrina) najprv odfoť problém.",
+        "Zavolaj príslušného remeselníka zo zoznamu kontaktov.",
+        "Informuj Ivana správou o probléme a dohodnutom termíne.",
+        "Zaznač poruchu a jej vyriešenie do evidencie jednotky."
+      ],
+      "attachments": [
+        { "type": "audio", "path": "assets/odkaz.mp3", "label": "Hlasový odkaz s postupom (čoskoro)" }
+      ],
+      "updated_at": "2026-08-30T01:00:00+02:00"
+    }
+  ],
+  "suggested_tasks": [
+    {
+      "id": "st-0001",
+      "text": "Doplniť postup pri storne rezervácie na Booking.com.",
+      "source_question": "Čo mám robiť, keď hosť zruší rezerváciu na poslednú chvíľu?",
+      "date": "2026-08-29T18:30:00+02:00",
+      "status": "navrhnuté"
+    },
+    {
+      "id": "st-0002",
+      "text": "Pridať zoznam schválených remeselníkov s telefónnymi číslami.",
+      "source_question": "Koho mám volať pri poruche kúrenia?",
+      "date": "2026-08-29T20:10:00+02:00",
+      "status": "navrhnuté"
+    }
+  ]
+}
