@@ -1,9 +1,14 @@
 # UI Specification — Firemná príručka
 
-Schválený koncept: **A — „Čistá karta"** (vzdušný, jednoduchý layout, veľké dotykové ciele)
-Zamrznuté: 2026-08-30; sha256 v confirmed_handoff.json
+Schválený koncept: **A — „Čistá karta"**, re-skinnutý do vizuálu majiteľovho webu **apartman7.github.io**
+(vzdušný, jednoduchý layout, veľké dotykové ciele; teplá značková paleta + serif nadpisy).
+Zamrznuté (v2): 2026-08-30; sha256 v confirmed_handoff.json
 Ivanov výber: Telegram 1050774149, 2026-08-30 — „vybral dizajn A ('Čistá karta') … zafixuj dizajn A".
-Referenčný mockup: `.solution-factory/design/A.html` + `.solution-factory/design/screenshots/A.png`
+Ivanova revízia (v2): Telegram 1050774149, 2026-08-30 — „vizuál nech vychádza z apartman7.github.io … inšpiruj sa
+  layoutom, farbami, typografiou, feelom, v medziach smeru A". → aplikované ako v2.
+Referenčný mockup A: `.solution-factory/design/A.html` + `screenshots/A.png`
+Referencia značky (apartman7): `.solution-factory/design/ref-apartman7/` (desktop.png, mobile.png, style.json — extrahované tokeny)
+Overené screenshoty v2: `.solution-factory/design/slice2-shots/` (01–08, mobil 390×844 + desktop)
 
 ## Cieľové zariadenie / viewport (default: Android telefón, 390×844)
 - Primárne mobil, portrait, ~390×844 CSS px. Mobile-first; desktop je progresívne rozšírenie (viac bieleho priestoru, obsah v centrovanom stĺpci max ~560 px, nie roztiahnutý na celú šírku).
@@ -29,17 +34,22 @@ Referenčný mockup: `.solution-factory/design/A.html` + `.solution-factory/desi
 - **Karta úlohy**: text úlohy (bold) + zelený chip „navrhnuté" vpravo hore + zdrojová otázka oddelená prerušovanou čiarou.
 - **Pill kategórie**, **breadcrumb**, **empty state blok** (emoji + nadpis + veta + návrhové odkazy).
 
-## Typografia a spacing (zámer)
-- Systémový font stack (-apple-system, Segoe UI, Roboto…). Bez custom web fontu (rýchle načítanie, offline-friendly).
-- Škála: názov app ~26px/bold, nadpis detailu ~23px, telo 15px, popisy/muted 12–13px.
-- Spacing: karty gap 12px, vnútorný padding kariet 16–18px, sekčné medzery 16–24px. Zaoblenia 14–20px (mäkké, priateľské).
-- Jemné tiene (`0 2px 8-10px rgba(30,45,70,.04)`) — plochý, čistý dojem, nie „ťažké" karty.
+## Typografia a spacing (zámer) — v2 (apartman7)
+- **Nadpisy (serif): Fraunces** (opsz, 600/700) — app titul, nadpis detailu, sekčné nadpisy, empty-state titul.
+  Fallback: `Georgia, "Times New Roman", serif`.
+- **Telo/UI (sans): Manrope** (400/600/700/800). Fallback: `system-ui, -apple-system, "Segoe UI", Roboto, sans-serif`.
+- Fonty sa načítajú z Google Fonts (rovnaký link ako apartman7). **Deviácia od pôvodného „bez web-fontov":** vedomá,
+  na Ivanovu žiadosť o vizuálnu zhodu; plné fallbacky → stránka je čitateľná aj bez CDN (graceful degradation).
+- Škála: app titul ~30px, nadpis detailu ~26px, karty názvy 16–17px, telo 15–16px, muted 12–13px. Negatívny letter-spacing na veľkých serifoch.
+- Spacing: karty gap 12px, padding kariet 14–18px, sekčné medzery 22–40px. **Zaoblenie 18px** (--radius), pill 999px.
+- Teplé jemné tiene (`0 6px 20px rgba(30,58,52,.06)`); hero má výraznejší tieň.
 
-## Vizuálny tón / farby
-- Svetlý, vzdušný, pokojný. Pozadie `#f6f8fb`, karty biele, text `#1c2530`, muted `#6b7684`, linky/hranice `#eef1f5`.
-- Akcent modrý `#2f7df6`, jemný akcent `#eaf2ff`. Úspech/„navrhnuté" zelený `#2e7d4f` na `#e8f4ec`.
-- PDF odznak červenkastý `#e04a3a` na `#ffe9e6`.
-- Jeden akcent, žiadne prehnané farby ani gradienty — dôraz na čitateľnosť pre netechnického pracovníka.
+## Vizuálny tón / farby — v2 (značka apartman7)
+- Teplý, pokojný, „boutique". **Pozadie paper `#faf7f1`**, karty biele `#fff`, text ink `#22302c`, muted `#6b7a74`, hranice/line `#e7e0d3`.
+- **Primárna = pine `#1e3a34`** (hero pozadie, číslované kroky, primárne akcenty), hover pine-2 `#2b4f47`.
+- **Akcent = brass `#b98a3c`**, jemný brass-soft `#f3e8d3` (ikonové dlaždice, pill, chevrony). Pozn.: text na brass-soft používa tmavšiu brass `#6f5010` kvôli kontrastu AA (nie surová brass).
+- Úspech/„navrhnuté" `#386b56` na `#e6f0ea`. Danger/PDF `#a53d35` na `#fff0ed`.
+- **Hero hlavička:** pínová (pine→#16302a gradient) kapela, biely Fraunces titul, brass-soft podtitul, zaoblený spodok. Bez fotky (nemáme relevantný asset).
 
 ## Loading / empty / error / disabled stavy
 - **Loading**: jednoduchý text/skeleton pri načítaní `content.json`; nesmie blikať prázdnou stránkou.
