@@ -5,9 +5,10 @@
 (function () {
   "use strict";
 
-  var state = { data: null, categoryId: null, itemId: null };
+  var state = { data: null, categoryId: null, itemId: null, query: "" };
 
   var els = {};
+  var lightbox = { root: null, img: null, closeBtn: null, lastFocus: null };
 
   document.addEventListener("DOMContentLoaded", function () {
     els.status = document.getElementById("status");
@@ -17,11 +18,37 @@
     els.title = document.getElementById("app-title");
     els.updated = document.getElementById("app-updated");
     els.homeBtn = document.getElementById("home-btn");
+    els.searchBox = document.getElementById("search-box");
+    els.searchInput = document.getElementById("search-input");
+    els.searchClear = document.getElementById("search-clear");
+
+    lightbox.root = document.getElementById("lightbox");
+    lightbox.img = document.getElementById("lightbox-img");
+    lightbox.closeBtn = document.getElementById("lightbox-close");
 
     els.homeBtn.addEventListener("click", function () {
-      state.categoryId = null;
-      state.itemId = null;
+      goHome();
+    });
+
+    els.searchInput.addEventListener("input", function () {
+      state.query = els.searchInput.value || "";
+      els.searchClear.classList.toggle("hidden", !state.query);
       render();
+    });
+    els.searchClear.addEventListener("click", function () {
+      clearSearch();
+      els.searchInput.focus();
+    });
+
+    // Lightbox ovládanie
+    lightbox.closeBtn.addEventListener("click", closeLightbox);
+    lightbox.root.addEventListener("click", function (e) {
+      if (e.target === lightbox.root) closeLightbox();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !lightbox.root.classList.contains("hidden")) {
+        closeLightbox();
+      }
     });
 
     loadContent();
@@ -60,6 +87,22 @@
     els.status.classList.toggle("hidden", !!hide);
   }
 
+  function goHome() {
+    state.categoryId = null;
+    state.itemId = null;
+    state.query = "";
+    if (els.searchInput) els.searchInput.value = "";
+    if (els.searchClear) els.searchClear.classList.add("hidden");
+    render();
+  }
+
+  function clearSearch() {
+    state.query = "";
+    els.searchInput.value = "";
+    els.searchClear.classList.add("hidden");
+    render();
+  }
+
   /* ---- Router / render ---- */
   function render() {
     clear(els.viewContent);
@@ -67,16 +110,26 @@
 
     if (!state.data) return;
 
-    if (state.categoryId && state.itemId) {
+    // Vyhľadávacie pole je viditeľné len na domovskej obrazovke (zoznam kategórií).
+    var onHome = !state.categoryId && !state.itemId;
+    els.searchBox.classList.toggle("hidden", !onHome);
+
+    var q = (state.query || "").trim();
+
+    if (onHome && q) {
+      renderSearchResults(q);
+    } else if (state.categoryId && state.itemId) {
       renderDetail();
     } else if (state.categoryId) {
       renderItemList();
     } else {
       renderCategoryList();
     }
-    // Fokus na obsah pre klávesnicovú navigáciu
-    var main = document.getElementById("main");
-    if (main) main.focus();
+    // Fokus na obsah pre klávesnicovú navigáciu — ale nie počas písania do hľadania.
+    if (!(onHome && q) && document.activeElement !== els.searchInput) {
+      var main = document.getElementById("main");
+      if (main) main.focus();
+    }
   }
 
   function renderCategoryList() {
@@ -88,22 +141,34 @@
     var ul = document.createElement("ul");
     ul.className = "card-list";
     cats.forEach(function (cat) {
-      var count = countItems(cat.id);
       var li = document.createElement("li");
       var btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "card-button";
+      btn.className = "cat-card";
 
-      var title = document.createElement("span");
-      title.className = "card-title";
-      title.textContent = cat.name || cat.id;
+      var ico = document.createElement("span");
+      ico.className = "ico";
+      ico.setAttribute("aria-hidden", "true");
+      ico.textContent = cat.icon || "📁";
 
-      var meta = document.createElement("span");
-      meta.className = "card-meta";
-      meta.textContent = count + " " + pluralItems(count);
+      var txt = document.createElement("span");
+      txt.className = "txt";
+      var name = document.createElement("b");
+      name.textContent = cat.name || cat.id;
+      var desc = document.createElement("span");
+      var count = countItems(cat.id);
+      desc.textContent = cat.desc || (count + " " + pluralItems(count));
+      txt.appendChild(name);
+      txt.appendChild(desc);
 
-      btn.appendChild(title);
-      btn.appendChild(meta);
+      var chev = document.createElement("span");
+      chev.className = "chev";
+      chev.setAttribute("aria-hidden", "true");
+      chev.textContent = "›";
+
+      btn.appendChild(ico);
+      btn.appendChild(txt);
+      btn.appendChild(chev);
       btn.addEventListener("click", function () {
         state.categoryId = cat.id;
         state.itemId = null;
@@ -127,31 +192,134 @@
     var ul = document.createElement("ul");
     ul.className = "card-list";
     items.forEach(function (item) {
-      var li = document.createElement("li");
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "card-button";
-
-      var title = document.createElement("span");
-      title.className = "card-title";
-      title.textContent = item.title || item.id;
-
-      var meta = document.createElement("span");
-      meta.className = "card-meta";
-      meta.textContent = item.body_type === "steps" ? "Postup (kroky)" : "Text";
-
-      btn.appendChild(title);
-      btn.appendChild(meta);
-      btn.addEventListener("click", function () {
-        state.itemId = item.id;
-        render();
-      });
-      li.appendChild(btn);
-      ul.appendChild(li);
+      ul.appendChild(makeItemCard(item, item.body_type === "steps" ? "Postup (kroky)" : "Text"));
     });
     els.viewContent.appendChild(ul);
   }
 
+  // Karta položky (zdieľaná pre zoznam kategórie aj výsledky hľadania).
+  function makeItemCard(item, subtitle) {
+    var li = document.createElement("li");
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "item-card";
+
+    var txt = document.createElement("span");
+    txt.className = "txt";
+    var name = document.createElement("b");
+    name.textContent = item.title || item.id;
+    txt.appendChild(name);
+    if (subtitle) {
+      var sub = document.createElement("span");
+      sub.textContent = subtitle;
+      txt.appendChild(sub);
+    }
+
+    var chev = document.createElement("span");
+    chev.className = "chev";
+    chev.setAttribute("aria-hidden", "true");
+    chev.textContent = "›";
+
+    btn.appendChild(txt);
+    btn.appendChild(chev);
+    btn.addEventListener("click", function () {
+      state.categoryId = item.category;
+      state.itemId = item.id;
+      render();
+    });
+    li.appendChild(btn);
+    return li;
+  }
+
+  /* ---- Vyhľadávanie ---- */
+  function renderSearchResults(q) {
+    var needle = normalizeText(q);
+    var items = (state.data.items || []).filter(function (item) {
+      return normalizeText(itemHaystack(item)).indexOf(needle) !== -1;
+    });
+
+    if (!items.length) {
+      els.viewContent.appendChild(makeSearchEmpty(q));
+      return;
+    }
+
+    var label = document.createElement("p");
+    label.className = "results-label";
+    label.textContent = items.length + " " + pluralItems(items.length);
+    els.viewContent.appendChild(label);
+
+    var ul = document.createElement("ul");
+    ul.className = "card-list";
+    items.forEach(function (item) {
+      var cat = findCategory(item.category);
+      var sub = cat ? (cat.name || cat.id) : "";
+      ul.appendChild(makeItemCard(item, sub));
+    });
+    els.viewContent.appendChild(ul);
+  }
+
+  function itemHaystack(item) {
+    var parts = [item.title || ""];
+    if (Array.isArray(item.steps)) parts.push(item.steps.join(" "));
+    if (typeof item.text === "string") parts.push(item.text);
+    return parts.join(" ");
+  }
+
+  // Diakritika-necitlivé, case-insensitive porovnanie.
+  function normalizeText(s) {
+    s = String(s == null ? "" : s).toLowerCase();
+    if (s.normalize) {
+      s = s.normalize("NFD").replace(/[̀-ͯ]/g, "");
+    }
+    return s;
+  }
+
+  function makeSearchEmpty(q) {
+    var wrap = document.createElement("div");
+
+    var box = document.createElement("div");
+    box.className = "empty";
+    var em = document.createElement("div");
+    em.className = "em";
+    em.setAttribute("aria-hidden", "true");
+    em.textContent = "🔍";
+    var b = document.createElement("b");
+    b.textContent = "Nič sa nenašlo pre „" + q + "“";
+    var p = document.createElement("p");
+    p.textContent = "Skús iné slovo alebo prehľadaj kategórie nižšie.";
+    box.appendChild(em);
+    box.appendChild(b);
+    box.appendChild(p);
+    wrap.appendChild(box);
+
+    var cats = state.data.categories || [];
+    if (cats.length) {
+      var hintLabel = document.createElement("div");
+      hintLabel.className = "hint-label";
+      hintLabel.textContent = "Skús prehľadať kategórie";
+      wrap.appendChild(hintLabel);
+
+      var links = document.createElement("div");
+      links.className = "hint-links";
+      cats.slice(0, 4).forEach(function (cat) {
+        var a = document.createElement("button");
+        a.type = "button";
+        a.className = "hint-link";
+        a.textContent = cat.name || cat.id;
+        a.addEventListener("click", function () {
+          clearSearch();
+          state.categoryId = cat.id;
+          state.itemId = null;
+          render();
+        });
+        links.appendChild(a);
+      });
+      wrap.appendChild(links);
+    }
+    return wrap;
+  }
+
+  /* ---- Detail ---- */
   function renderDetail() {
     var cat = findCategory(state.categoryId);
     var item = findItem(state.itemId);
@@ -184,14 +352,32 @@
     article.className = "detail";
 
     var h3 = document.createElement("h3");
+    h3.className = "det";
     h3.textContent = item.title || item.id;
     article.appendChild(h3);
 
+    // Pill kategórie
+    if (cat) {
+      var pill = document.createElement("span");
+      pill.className = "pill";
+      pill.textContent = (cat.icon ? cat.icon + " " : "") + (cat.name || cat.id);
+      article.appendChild(pill);
+    }
+
     if (item.body_type === "steps" && Array.isArray(item.steps)) {
       var ol = document.createElement("ol");
-      item.steps.forEach(function (step) {
+      ol.className = "steps";
+      item.steps.forEach(function (step, i) {
         var li = document.createElement("li");
-        li.textContent = String(step);
+        li.className = "step";
+        var n = document.createElement("span");
+        n.className = "n";
+        n.setAttribute("aria-hidden", "true");
+        n.textContent = String(i + 1);
+        var p = document.createElement("p");
+        p.textContent = String(step);
+        li.appendChild(n);
+        li.appendChild(p);
         ol.appendChild(li);
       });
       article.appendChild(ol);
@@ -202,9 +388,9 @@
       item.text.split(/\n\s*\n/).forEach(function (para) {
         var trimmed = para.trim();
         if (!trimmed) return;
-        var p = document.createElement("p");
-        p.textContent = trimmed;
-        body.appendChild(p);
+        var p2 = document.createElement("p");
+        p2.textContent = trimmed;
+        body.appendChild(p2);
       });
       article.appendChild(body);
     } else {
@@ -238,38 +424,54 @@
 
       if (type === "pdf" && path) {
         var a = document.createElement("a");
+        a.className = "att-chip";
         a.href = path; // relatívna cesta v rámci assets/
         a.target = "_blank";
         a.rel = "noopener";
-        a.textContent = label || "Otvoriť PDF";
+        var badge = document.createElement("span");
+        badge.className = "att-badge pdf";
+        badge.setAttribute("aria-hidden", "true");
+        badge.textContent = "PDF";
+        var name = document.createElement("span");
+        name.className = "att-name";
+        name.textContent = label || "Otvoriť PDF";
+        a.appendChild(badge);
+        a.appendChild(name);
         li.appendChild(a);
       } else if (type === "image" && path) {
-        var img = document.createElement("img");
-        img.src = path;
-        img.alt = label || "Obrázok prílohy";
-        img.loading = "lazy";
-        li.appendChild(img);
-        if (label) {
-          var cap = document.createElement("div");
-          cap.className = "att-label";
-          cap.textContent = label;
-          li.appendChild(cap);
-        }
+        li.appendChild(makeImageAttachment(path, label));
       } else if (type === "video" || type === "audio") {
-        var ph = document.createElement("div");
-        ph.className = "placeholder";
-        ph.textContent = "(video/zvuk — čoskoro)";
-        li.appendChild(ph);
-        if (label) {
-          var cap2 = document.createElement("div");
-          cap2.className = "att-label";
-          cap2.textContent = label;
-          li.appendChild(cap2);
-        }
+        var isVideo = type === "video";
+        var chip = document.createElement("div");
+        chip.className = "att-chip";
+        var mbadge = document.createElement("span");
+        mbadge.className = "att-badge media";
+        mbadge.setAttribute("aria-hidden", "true");
+        mbadge.textContent = isVideo ? "🎬" : "🔊";
+        var wrapTxt = document.createElement("span");
+        wrapTxt.className = "att-name";
+        var mname = document.createElement("span");
+        mname.textContent = label || (isVideo ? "Video" : "Zvuk");
+        var msub = document.createElement("span");
+        msub.className = "att-sub";
+        msub.textContent = isVideo ? " (video — čoskoro)" : " (zvuk — čoskoro)";
+        wrapTxt.appendChild(mname);
+        wrapTxt.appendChild(msub);
+        chip.appendChild(mbadge);
+        chip.appendChild(wrapTxt);
+        li.appendChild(chip);
       } else {
         var unk = document.createElement("div");
-        unk.className = "placeholder";
-        unk.textContent = "(neznáma príloha)";
+        unk.className = "att-chip";
+        var ubadge = document.createElement("span");
+        ubadge.className = "att-badge unknown";
+        ubadge.setAttribute("aria-hidden", "true");
+        ubadge.textContent = "📎";
+        var uname = document.createElement("span");
+        uname.className = "att-name";
+        uname.textContent = label || "(neznáma príloha)";
+        unk.appendChild(ubadge);
+        unk.appendChild(uname);
         li.appendChild(unk);
       }
       ul.appendChild(li);
@@ -279,43 +481,92 @@
     return wrap;
   }
 
+  function makeImageAttachment(path, label) {
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "att-thumb";
+    var alt = label || "Obrázok prílohy";
+    btn.setAttribute("aria-label", "Zväčšiť obrázok: " + alt);
+
+    var img = document.createElement("img");
+    img.src = path;
+    img.alt = alt;
+    img.loading = "lazy";
+    btn.appendChild(img);
+
+    if (label) {
+      var cap = document.createElement("span");
+      cap.className = "att-caption";
+      cap.textContent = label;
+      btn.appendChild(cap);
+    }
+
+    btn.addEventListener("click", function () {
+      openLightbox(path, alt);
+    });
+    return btn;
+  }
+
+  /* ---- Lightbox ---- */
+  function openLightbox(src, alt) {
+    lightbox.lastFocus = document.activeElement;
+    lightbox.img.src = src;
+    lightbox.img.alt = alt || "";
+    lightbox.root.classList.remove("hidden");
+    lightbox.closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.root.classList.add("hidden");
+    lightbox.img.src = "";
+    lightbox.img.alt = "";
+    if (lightbox.lastFocus && typeof lightbox.lastFocus.focus === "function") {
+      lightbox.lastFocus.focus();
+    }
+    lightbox.lastFocus = null;
+  }
+
+  /* ---- Navrhované úlohy ---- */
   function renderSuggested() {
     clear(els.suggestedList);
     var tasks = (state.data && Array.isArray(state.data.suggested_tasks))
       ? state.data.suggested_tasks : [];
     if (!tasks.length) {
-      var li = document.createElement("li");
-      li.className = "suggested-item";
-      li.textContent = "Zatiaľ žiadne navrhované úlohy.";
-      els.suggestedList.appendChild(li);
+      var li0 = document.createElement("li");
+      li0.className = "task";
+      var p0 = document.createElement("p");
+      p0.className = "t";
+      p0.textContent = "Zatiaľ žiadne navrhované úlohy.";
+      li0.appendChild(p0);
+      els.suggestedList.appendChild(li0);
       return;
     }
     tasks.forEach(function (task) {
       var li = document.createElement("li");
-      li.className = "suggested-item";
+      li.className = "task";
 
-      var text = document.createElement("div");
-      text.className = "task-text";
+      var top = document.createElement("div");
+      top.className = "top";
+      var text = document.createElement("p");
+      text.className = "t";
       text.textContent = task.text || "(bez popisu)";
+      top.appendChild(text);
       if (task.status) {
-        var badge = document.createElement("span");
-        badge.className = "badge";
-        badge.textContent = task.status;
-        text.appendChild(badge);
+        var chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = task.status;
+        top.appendChild(chip);
       }
-      li.appendChild(text);
+      li.appendChild(top);
 
       if (task.source_question) {
-        var meta = document.createElement("div");
-        meta.className = "task-meta";
-        meta.textContent = "Otázka: " + task.source_question;
-        li.appendChild(meta);
-      }
-      if (task.date) {
-        var d = document.createElement("div");
-        d.className = "task-meta";
-        d.textContent = "Dátum: " + formatDate(task.date);
-        li.appendChild(d);
+        var src = document.createElement("p");
+        src.className = "src";
+        var em = document.createElement("em");
+        em.textContent = "z otázky: ";
+        src.appendChild(em);
+        src.appendChild(document.createTextNode(task.source_question));
+        li.appendChild(src);
       }
       els.suggestedList.appendChild(li);
     });
@@ -337,6 +588,7 @@
   function appendSep(parent) {
     var sep = document.createElement("span");
     sep.className = "sep";
+    sep.setAttribute("aria-hidden", "true");
     sep.textContent = "›";
     parent.appendChild(sep);
   }

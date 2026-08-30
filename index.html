@@ -12,6 +12,7 @@
   <header class="app-header">
     <div class="wrap">
       <h1 id="app-title">Firemná príručka</h1>
+      <p id="app-sub" class="app-sub">Ako na to — krok za krokom</p>
       <p id="app-updated" class="muted"></p>
     </div>
   </header>
@@ -23,10 +24,21 @@
       <span id="breadcrumb-tail"></span>
     </nav>
 
+    <!-- Vyhľadávanie (domov) -->
+    <div id="search-box" class="search-box hidden">
+      <label class="visually-hidden" for="search-input">Hľadať postup</label>
+      <span class="search-ico" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </span>
+      <input id="search-input" class="search-input" type="search" inputmode="search"
+             autocomplete="off" placeholder="Hľadať postup…" aria-label="Hľadať postup">
+      <button type="button" id="search-clear" class="search-clear hidden" aria-label="Vyčistiť vyhľadávanie">✕</button>
+    </div>
+
     <!-- Stavové/chybové hlásenie -->
     <p id="status" class="status" role="status" aria-live="polite">Načítavam obsah…</p>
 
-    <!-- Dynamický obsah: kategórie / položky / detail -->
+    <!-- Dynamický obsah: kategórie / položky / detail / výsledky vyhľadávania -->
     <section id="view" aria-labelledby="view-heading">
       <h2 id="view-heading" class="visually-hidden">Obsah príručky</h2>
       <div id="view-content"></div>
@@ -35,6 +47,7 @@
     <!-- Navrhované úlohy -->
     <section id="suggested" class="suggested" aria-labelledby="suggested-heading">
       <h2 id="suggested-heading">Navrhované úlohy</h2>
+      <p class="suggested-sub muted">Vznikli z otázok, na ktoré príručka zatiaľ nemá odpoveď</p>
       <ul id="suggested-list" class="suggested-list"></ul>
     </section>
   </main>
@@ -44,6 +57,14 @@
       <p class="muted">Interná firemná príručka · obsah sa upravuje cez <code>content.json</code></p>
     </div>
   </footer>
+
+  <!-- Lightbox overlay (obrázkové prílohy) -->
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Zväčšený obrázok">
+    <div class="lightbox-inner">
+      <button type="button" id="lightbox-close" class="lightbox-close" aria-label="Zavrieť">✕</button>
+      <img id="lightbox-img" class="lightbox-img" alt="">
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

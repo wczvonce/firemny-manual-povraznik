@@ -5,11 +5,11 @@
     "updated_at": "2026-08-30T01:00:00+02:00"
   },
   "categories": [
-    { "id": "prerabka", "name": "Prerábka & zariaďovanie" },
-    { "id": "sprava-booking", "name": "Správa & booking" },
-    { "id": "stavkovanie", "name": "Stávkovanie" },
-    { "id": "skilly", "name": "Skilly" },
-    { "id": "ine", "name": "Iné" }
+    { "id": "prerabka", "name": "Prerábka & zariaďovanie", "icon": "🛠️", "desc": "Príjem jednotiek, materiál, remeselníci" },
+    { "id": "sprava-booking", "name": "Správa & booking", "icon": "📅", "desc": "Rezervácie, hostia, storná" },
+    { "id": "stavkovanie", "name": "Stávkovanie", "icon": "🎯", "desc": "Postupy a pravidlá" },
+    { "id": "skilly", "name": "Skilly", "icon": "💡", "desc": "Zručnosti a návody" },
+    { "id": "ine", "name": "Iné", "icon": "📦", "desc": "Ostatné postupy" }
   ],
   "items": [
     {
