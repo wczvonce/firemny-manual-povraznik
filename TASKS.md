@@ -19,15 +19,13 @@
 - [x] a11y (alt, fokus, kontrast, dotykové ciele, sémantika); 0 console errors
 - Akceptácia: AC-003, AC-004 PASS (+ AC-002/AC-005/AC-010 re-overené vizuálne)
 
-## Agent časť (HYBRID)  [BUILT — čaká na aktiváciu skillu Ivanom]
-- [x] manual-assistant skill navrhnutý: „firemna-prirucka-asistent" (Skill Workshop proposal, PENDING)
-- [x] inštrukcie: odpoveď z content.json, „(odpoveď mimo príručky)" označenie + vlastné znalosti
-- [x] zápis návrhu úlohy: scripts/add-suggested-task.js (append + commit+push) — logika otestovaná
-- [x] editácia obsahu (len Ivan): scripts/commit-content.js (validácia JSON + commit+push, revert pri chybe)
-- [ ] AKTIVÁCIA: apply Skill Workshop proposal (mení Ivanovho live agenta → vyžaduje jeho súhlas)
-- [ ] LIVE test po aktivácii: AC-006 (odpoveď z príručky), AC-007 (mimo príručky + návrh + notifikácia),
-      AC-008 (edit cez Telegram → push → online), AC-009 (zlyhaný push → nahlásené, konzistentné)
-- Akceptácia: AC-006, AC-007, AC-008, AC-009 (verifikácia po aktivácii)
+## Agent časť (HYBRID)  [DONE — aktivované + live test 2026-08-30]
+- [x] manual-assistant skill „firemna-prirucka-asistent" AKTIVOVANÝ (Ivan „Môžeš"; v2 markdown-only prešiel scanom; v1 s execSync bola karanténovaná)
+- [x] odpoveď z content.json + „(odpoveď mimo príručky)" označenie (AC-006/AC-007)
+- [x] zápis návrhu úlohy: scripts/add-suggested-task.js — LIVE test st-0003 (AC-007)
+- [x] editácia obsahu → commit+push → online: overené live do ~16s (AC-008)
+- [x] chybové cesty (zlyhaný push / nevalidný JSON) — overené (AC-009)
+- Akceptácia: AC-006, AC-007, AC-008, AC-009 = PASS
 
 ## GATED — publikácia  [DONE — 2026-08-30, Ivan schválil účet wczvonce]
 - [x] vytvoriť GitHub repo (wczvonce/firemny-manual-povraznik, public) + push main
