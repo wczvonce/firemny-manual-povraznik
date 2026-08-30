@@ -26,7 +26,8 @@
 - [ ] editácia obsahu cez Telegram (commit+push abstrakcia)
 - Akceptácia: AC-006, AC-007, AC-008, AC-009
 
-## GATED — publikácia  [PENDING — čaká Ivanov súhlas]
-- [ ] vytvoriť GitHub repo, nastaviť Pages, push
-- [ ] overiť verejnú URL na mobile (AC-001 naostro)
-- [ ] secret scan repa (AC-011)
+## GATED — publikácia  [DONE — 2026-08-30, Ivan schválil účet wczvonce]
+- [x] vytvoriť GitHub repo (wczvonce/firemny-manual-povraznik, public) + push main
+- [x] nastaviť GitHub Pages (main /) → https://wczvonce.github.io/firemny-manual-povraznik/
+- [x] overiť verejnú URL na mobile (AC-001 naostro) — HTTP 200, render OK, 0 console errors
+- [x] secret scan repa (AC-011) — čisté
