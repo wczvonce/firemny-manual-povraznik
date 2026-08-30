@@ -19,12 +19,15 @@
 - [x] a11y (alt, fokus, kontrast, dotykové ciele, sémantika); 0 console errors
 - Akceptácia: AC-003, AC-004 PASS (+ AC-002/AC-005/AC-010 re-overené vizuálne)
 
-## Agent časť (HYBRID, po overení appky)  [PENDING]
-- [ ] manual-assistant skill: odpoveď z content.json
-- [ ] „(mimo príručky)" označenie + odpoveď z vlastných znalostí
-- [ ] zápis návrhu úlohy do content.json.suggested_tasks + notifikácia Ivana
-- [ ] editácia obsahu cez Telegram (commit+push abstrakcia)
-- Akceptácia: AC-006, AC-007, AC-008, AC-009
+## Agent časť (HYBRID)  [BUILT — čaká na aktiváciu skillu Ivanom]
+- [x] manual-assistant skill navrhnutý: „firemna-prirucka-asistent" (Skill Workshop proposal, PENDING)
+- [x] inštrukcie: odpoveď z content.json, „(odpoveď mimo príručky)" označenie + vlastné znalosti
+- [x] zápis návrhu úlohy: scripts/add-suggested-task.js (append + commit+push) — logika otestovaná
+- [x] editácia obsahu (len Ivan): scripts/commit-content.js (validácia JSON + commit+push, revert pri chybe)
+- [ ] AKTIVÁCIA: apply Skill Workshop proposal (mení Ivanovho live agenta → vyžaduje jeho súhlas)
+- [ ] LIVE test po aktivácii: AC-006 (odpoveď z príručky), AC-007 (mimo príručky + návrh + notifikácia),
+      AC-008 (edit cez Telegram → push → online), AC-009 (zlyhaný push → nahlásené, konzistentné)
+- Akceptácia: AC-006, AC-007, AC-008, AC-009 (verifikácia po aktivácii)
 
 ## GATED — publikácia  [DONE — 2026-08-30, Ivan schválil účet wczvonce]
 - [x] vytvoriť GitHub repo (wczvonce/firemny-manual-povraznik, public) + push main
