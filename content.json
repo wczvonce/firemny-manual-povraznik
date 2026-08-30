@@ -5,11 +5,36 @@
     "updated_at": "2026-08-30T01:00:00+02:00"
   },
   "categories": [
-    { "id": "prerabka", "name": "Prerábka & zariaďovanie", "icon": "🛠️", "desc": "Príjem jednotiek, materiál, remeselníci" },
-    { "id": "sprava-booking", "name": "Správa & booking", "icon": "📅", "desc": "Rezervácie, hostia, storná" },
-    { "id": "stavkovanie", "name": "Stávkovanie", "icon": "🎯", "desc": "Postupy a pravidlá" },
-    { "id": "skilly", "name": "Skilly", "icon": "💡", "desc": "Zručnosti a návody" },
-    { "id": "ine", "name": "Iné", "icon": "📦", "desc": "Ostatné postupy" }
+    {
+      "id": "prerabka",
+      "name": "Prerábka & zariaďovanie",
+      "icon": "🛠️",
+      "desc": "Príjem jednotiek, materiál, remeselníci"
+    },
+    {
+      "id": "sprava-booking",
+      "name": "Správa & booking",
+      "icon": "📅",
+      "desc": "Rezervácie, hostia, storná"
+    },
+    {
+      "id": "stavkovanie",
+      "name": "Stávkovanie",
+      "icon": "🎯",
+      "desc": "Postupy a pravidlá"
+    },
+    {
+      "id": "skilly",
+      "name": "Skilly",
+      "icon": "💡",
+      "desc": "Zručnosti a návody"
+    },
+    {
+      "id": "ine",
+      "name": "Iné",
+      "icon": "📦",
+      "desc": "Ostatné postupy"
+    }
   ],
   "items": [
     {
@@ -24,7 +49,11 @@
         "Po schválení objednaj materiál a naplánuj termín remeselníkov."
       ],
       "attachments": [
-        { "type": "pdf", "path": "assets/ukazka.pdf", "label": "Kontrolný zoznam pri príjme (PDF)" }
+        {
+          "type": "pdf",
+          "path": "assets/ukazka.pdf",
+          "label": "Kontrolný zoznam pri príjme (PDF)"
+        }
       ],
       "updated_at": "2026-08-30T01:00:00+02:00"
     },
@@ -40,7 +69,11 @@
         "Po odchode hosťa označ jednotku ako 'na upratovanie'."
       ],
       "attachments": [
-        { "type": "image", "path": "assets/ukazka.jpg", "label": "Foto uvítacieho balíčka" }
+        {
+          "type": "image",
+          "path": "assets/ukazka.jpg",
+          "label": "Foto uvítacieho balíčka"
+        }
       ],
       "updated_at": "2026-08-30T01:00:00+02:00"
     },
@@ -51,7 +84,11 @@
       "body_type": "text",
       "text": "Stávkuj len zo schváleného rozpočtu a nikdy neprekračuj denný limit. Každú stávku zapíš do evidencie: dátum, zápas, kurz, vklad a výsledok. Ak si nie si istá, radšej stávku nedávaj a napíš Ivanovi.",
       "attachments": [
-        { "type": "video", "path": "assets/navod.mp4", "label": "Videonávod k evidencii (čoskoro)" }
+        {
+          "type": "video",
+          "path": "assets/navod.mp4",
+          "label": "Videonávod k evidencii (čoskoro)"
+        }
       ],
       "updated_at": "2026-08-30T01:00:00+02:00"
     },
@@ -76,7 +113,11 @@
         "Zaznač poruchu a jej vyriešenie do evidencie jednotky."
       ],
       "attachments": [
-        { "type": "audio", "path": "assets/odkaz.mp3", "label": "Hlasový odkaz s postupom (čoskoro)" }
+        {
+          "type": "audio",
+          "path": "assets/odkaz.mp3",
+          "label": "Hlasový odkaz s postupom (čoskoro)"
+        }
       ],
       "updated_at": "2026-08-30T01:00:00+02:00"
     }
@@ -94,6 +135,13 @@
       "text": "Pridať zoznam schválených remeselníkov s telefónnymi číslami.",
       "source_question": "Koho mám volať pri poruche kúrenia?",
       "date": "2026-08-29T20:10:00+02:00",
+      "status": "navrhnuté"
+    },
+    {
+      "id": "st-0003",
+      "text": "Doplnit postup: vystavenie faktury pre firemneho hosta (aké údaje, kde ju vytvoriť, komu poslať).",
+      "source_question": "Ako mám vystaviť faktúru pre firemného hosťa?",
+      "date": "2026-08-30T08:36:31.429Z",
       "status": "navrhnuté"
     }
   ]
