@@ -405,6 +405,19 @@
     els.viewContent.appendChild(article);
   }
 
+  // Validácia cesty prílohy: povolená LEN relatívna cesta do assets/.
+  // Odmietne ':' (javascript:, data:, http:, C:), vedúce '/' ('//' protocol-relative
+  // aj absolútne), spätné lomítko a '..' (traversal). Vráti cestu alebo null.
+  function safeAssetPath(p) {
+    if (typeof p !== "string" || !p) return null;
+    if (p.indexOf(":") !== -1) return null;
+    if (p.charAt(0) === "/") return null;
+    if (p.indexOf("\\") !== -1) return null;
+    if (p.indexOf("..") !== -1) return null;
+    if (p.indexOf("assets/") !== 0) return null;
+    return p;
+  }
+
   function renderAttachments(attachments) {
     var wrap = document.createElement("div");
     wrap.className = "attachments";
@@ -421,11 +434,12 @@
       var type = att && att.type;
       var path = att && att.path;
       var label = (att && att.label) || "";
+      var safePath = safeAssetPath(path); // null pri nebezpečnej/nevalidnej ceste
 
-      if (type === "pdf" && path) {
+      if (type === "pdf" && safePath) {
         var a = document.createElement("a");
         a.className = "att-chip";
-        a.href = path; // relatívna cesta v rámci assets/
+        a.href = safePath; // overená relatívna cesta v rámci assets/
         a.target = "_blank";
         a.rel = "noopener";
         var badge = document.createElement("span");
@@ -438,8 +452,8 @@
         a.appendChild(badge);
         a.appendChild(name);
         li.appendChild(a);
-      } else if (type === "image" && path) {
-        li.appendChild(makeImageAttachment(path, label));
+      } else if (type === "image" && safePath) {
+        li.appendChild(makeImageAttachment(safePath, label));
       } else if (type === "video" || type === "audio") {
         var isVideo = type === "video";
         var chip = document.createElement("div");
