@@ -2,7 +2,7 @@
   "meta": {
     "title": "Firemná príručka",
     "lang": "sk",
-    "updated_at": "2026-08-30T01:00:00+02:00"
+    "updated_at": "2026-09-02T13:15:00+02:00"
   },
   "categories": [
     {
@@ -56,6 +56,21 @@
         }
       ],
       "updated_at": "2026-08-30T01:00:00+02:00"
+    },
+    {
+      "id": "umiestnenie-zavesnych-svietidiel",
+      "category": "prerabka",
+      "title": "Umiestnenie závesných svietidiel pri nábytku",
+      "body_type": "steps",
+      "steps": [
+        "Pred určením vývodov a miest pre svietidlá si vyznač konečné umiestnenie vstavanej skrine, chladničky, kuchynskej linky a ostatného nábytku s otváracími dvierkami.",
+        "Pri každom kuse nábytku skontroluj celý priestor, ktorý dvierka potrebujú na úplné otvorenie, vrátane presahu úchytiek.",
+        "Závesné alebo nižšie osadené svietidlo nesmie zasahovať do dráhy dvierok ani brániť prístupu do skrine, chladničky či kuchynskej linky.",
+        "Polohu svietidla over podľa pôdorysu nábytku aj smeru otvárania dvierok. Ak ešte nie sú známe presné rozmery nábytku, nechaj dostatočnú rezervu a konečné miesto svietidla neurčuj naslepo.",
+        "Pred montážou urob poslednú kontrolu: všetky dvierka sa musia dať úplne otvoriť bez kontaktu so svietidlom. Toto je obzvlášť dôležité pri závesných svietidlách, ktoré používame najčastejšie."
+      ],
+      "attachments": [],
+      "updated_at": "2026-09-02T13:15:00+02:00"
     },
     {
       "id": "checkin-hosta",
