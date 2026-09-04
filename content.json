@@ -142,11 +142,14 @@
       "title": "Aplikácia na sledovanie nehnuteľností (Zvolen/Banská Bystrica) nejde",
       "body_type": "steps",
       "steps": [
-        "Skontroluj appku Tailscale v telefóne, či je zapnutá.",
-        "Dashboard appky beží lokálne na PC a je z telefónu dostupný len cez Tailscale sieť — ak je Tailscale vypnutý, appka sa javí ako nedostupná, aj keď na PC beží v poriadku."
+        "Aplikácia beží na firemnom počítači na Slnečných stránkach.",
+        "Priamo na tom počítači sa dá zobraziť vždy.",
+        "Každý, kto je pripojený na Wi-Fi na Slnečných stránkach, ju vidí tiež.",
+        "Ak niekto nie je pripojený na túto Wi-Fi (napr. je mimo), dá sa prihlásiť aj cez mobil cez appku Tailscale — ale len ak je v Tailscale prihlásený na účte wczvonce.",
+        "Ak appka nejde a si mimo firemnej Wi-Fi: skontroluj appku Tailscale v telefóne, či je zapnutá a prihlásená na účet wczvonce."
       ],
       "attachments": [],
-      "updated_at": "2026-09-04T09:23:00+02:00"
+      "updated_at": "2026-09-04T09:27:00+02:00"
     }
   ],
   "suggested_tasks": [
