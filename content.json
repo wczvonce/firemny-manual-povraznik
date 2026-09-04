@@ -73,6 +73,20 @@
       "updated_at": "2026-09-02T13:15:00+02:00"
     },
     {
+      "id": "vyber-dekorov-nabytok",
+      "category": "prerabka",
+      "title": "Výber dekorov na nábytok pri prerábke",
+      "body_type": "steps",
+      "steps": [
+        "Pri výbere dekoru na nábytok (kuchynská linka, skrine a pod.) vždy over cenu daného dekoru u stolára pred jeho definitívnym potvrdením.",
+        "Dávame len štandardné ceny — dekor nesmie stáť niekoľkonásobne viac ako ostatné bežné dekory.",
+        "Nespoliehaj sa len na katalóg/vzorkovník — nechaj si u stolára rovno pri výbere potvrdiť, či je dekor štandardný a objednateľný v bežnej cene.",
+        "Dôvod: viackrát sa stalo, že sme dekor vybrali a stolár nám až po mesiaci pri objednávaní oznámil, že ide o nadštandardný dekor, ktorý nemôže objednať za pôvodnú cenu — kvôli tomu sme sa nezmestili do rozpočtu."
+      ],
+      "attachments": [],
+      "updated_at": "2026-09-04T10:29:00+02:00"
+    },
+    {
       "id": "checkin-hosta",
       "category": "sprava-booking",
       "title": "Check-in hosta cez Booking",
