@@ -135,6 +135,18 @@
         }
       ],
       "updated_at": "2026-08-30T01:00:00+02:00"
+    },
+    {
+      "id": "nehnutelnosti-tracker-nedostupny",
+      "category": "ine",
+      "title": "Aplikácia na sledovanie nehnuteľností (Zvolen/Banská Bystrica) nejde",
+      "body_type": "steps",
+      "steps": [
+        "Skontroluj appku Tailscale v telefóne, či je zapnutá.",
+        "Dashboard appky beží lokálne na PC a je z telefónu dostupný len cez Tailscale sieť — ak je Tailscale vypnutý, appka sa javí ako nedostupná, aj keď na PC beží v poriadku."
+      ],
+      "attachments": [],
+      "updated_at": "2026-09-04T09:23:00+02:00"
     }
   ],
   "suggested_tasks": [
