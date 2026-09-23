@@ -48,6 +48,15 @@ http://localhost:8000
    placeholder „(video/zvuk — čoskoro)".
 5. Sekcia „Navrhované úlohy" zobrazí návrhy zo `suggested_tasks`.
 
+## Odkazy na konkrétnu časť
+
+Adresa v prehliadači sa mení podľa toho, čo je otvorené, takže odkaz sa dá skopírovať a poslať:
+
+- `…/#postup/<id-položky>` – otvorí priamo daný postup (napr. `#postup/kupa-bytu-spravcovska-spolocnost`)
+- `…/#kategoria/<id-kategórie>` – otvorí zoznam postupov v kategórii (napr. `#kategoria/prerabka`)
+
+ID sa overuje voči `content.json`; neznámy alebo neplatný odkaz otvorí úvodnú obrazovku.
+
 ## Ako upraviť obsah
 
 Uprav `content.json` podľa schémy v `APP_SPEC.md`:

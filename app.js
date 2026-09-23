@@ -73,7 +73,12 @@
           els.updated.textContent = "Aktualizované: " + formatDate(data.meta.updated_at);
         }
         renderSuggested();
+        applyHash();
         render();
+        window.addEventListener("hashchange", function () {
+          applyHash();
+          render();
+        });
       })
       .catch(function (err) {
         setStatus("Nepodarilo sa načítať obsah (content.json): " + err.message, true, false);
@@ -103,8 +108,43 @@
     render();
   }
 
+  /* ---- Odkazy na konkrétnu časť (URL hash) ----
+   * #postup/<id-položky>  → detail postupu
+   * #kategoria/<id>       → zoznam položiek kategórie
+   * ID sa vždy overí voči content.json; neznámy hash = domovská obrazovka. */
+  var HASH_ID_RE = /^[a-z0-9-]{1,100}$/;
+
+  function applyHash() {
+    var raw = "";
+    try { raw = decodeURIComponent((window.location.hash || "").replace(/^#/, "")); } catch (e) { raw = ""; }
+    var m = /^(postup|kategoria)\/(.+)$/.exec(raw);
+    state.categoryId = null;
+    state.itemId = null;
+    if (!m || !HASH_ID_RE.test(m[2])) return;
+    if (m[1] === "postup") {
+      var item = findItem(m[2]);
+      if (item) {
+        state.categoryId = item.category;
+        state.itemId = item.id;
+      }
+    } else if (findCategory(m[2])) {
+      state.categoryId = m[2];
+    }
+  }
+
+  // Zapíše aktuálnu obrazovku do URL (bez nového záznamu v histórii), aby sa dal odkaz skopírovať.
+  function syncHash() {
+    if (!window.history || !window.history.replaceState) return;
+    var h = "";
+    if (state.categoryId && state.itemId) h = "#postup/" + state.itemId;
+    else if (state.categoryId) h = "#kategoria/" + state.categoryId;
+    if (h === (window.location.hash || "")) return;
+    window.history.replaceState(null, "", window.location.pathname + window.location.search + h);
+  }
+
   /* ---- Router / render ---- */
   function render() {
+    syncHash();
     clear(els.viewContent);
     clear(els.breadcrumbTail);
 

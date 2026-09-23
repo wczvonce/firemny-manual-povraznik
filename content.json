@@ -2,7 +2,7 @@
   "meta": {
     "title": "Firemná príručka",
     "lang": "sk",
-    "updated_at": "2026-09-02T13:15:00+02:00"
+    "updated_at": "2026-09-23T15:41:00+02:00"
   },
   "categories": [
     {
@@ -37,6 +37,34 @@
     }
   ],
   "items": [
+    {
+      "id": "kupa-bytu-spravcovska-spolocnost",
+      "category": "prerabka",
+      "title": "Kúpa bytu – nahlásenie správcovskej spoločnosti a mesačné platby",
+      "body_type": "steps",
+      "steps": [
+        "Hneď po kúpe bytu zisti, ktorá správcovská spoločnosť spravuje daný panelák (napríklad Bytos alebo Spravbyt), a choď k nim.",
+        "Nahlás, že si byt kúpil. Správcovská spoločnosť si na liste vlastníctva overí, že si byt naozaj kúpil.",
+        "Pri tej istej návšteve nahlás aj prerábku – vyplníš tlačivo o tom, že ideš byt prerábať.",
+        "Pri nahlasovaní prerábky vždy povedz, že nemeníme pôdorys bytu. Keby sme pôdorys menili, museli by sme vybavovať stavebné povolenie (trvá to asi pol roka) – preto prerábame vždy tak, aby sa pôdorys bytu nemenil.",
+        "Keď sa pýtajú, čo všetko budeme prerábať, povedz klasiku – prerábame všetko: radiátory, stierky, obklady, murované jadro, podlahy, prípadne okná.",
+        "Správcovská spoločnosť ti vypíše evidenčný list (ukážka je v prílohe nižšie). Na ňom nájdeš všetko potrebné na platby: sumu („CELKOM MESAČNÁ ÚHRADA“), variabilný symbol (VS), konštantný symbol (KS), IBAN a „Dátum platnosti od“ – od kedy sa má platiť.",
+        "Evidenčný list nahraj do doklado.sk do účtovníctva.",
+        "Vo firemnej Tatra banke nastav trvalý príkaz – mesačne, na sumu, IBAN, variabilný symbol a konštantný symbol presne podľa evidenčného listu, s prvou platbou od dátumu platnosti.",
+        "Byt dopíš do Excelu Platby (Google Drive, priečinok Podnikanie byty): https://docs.google.com/spreadsheets/d/1BOM-4yrwexpumcO5yMVG6CGnnLG4-MmOAkauIUjwPvo/edit – do listu „Platby“ pridaj nový riadok: nehnuteľnosť, čo sa platí, z akého účtu sa platí (Tatra banka – Povrazník s.r.o.), sumu, IBAN, variabilný symbol a do poznámky od kedy sa platí. Stav daj „Vybaviť“ (riadok bude oranžový), kým nie je nastavený trvalý príkaz a evidenčný list v doklado.sk – potom ho prepni na „Aktívne“.",
+        "Pre nový byt založ aj nový Excel nákladov („Náklady – názov bytu“), kam sa budú zapisovať všetky náklady na tento byt. Presný postup, ako ho vytvoriť, ešte doplníme.",
+        "Keď sa byt predáva: v Tatra banke zruš trvalý príkaz a v Exceli Platby nastav pri riadku bytu Stav „Zrušené“ – riadok sa sám začervená a presunie do listu „Zrušené byty“, aby sme vedeli, že sa to už neplatí.",
+        "Zároveň spočítaj všetky mesačné platby, ktoré sa správcovskej spoločnosti za tento byt zaplatili, a celkovú sumu dopíš do Excelu nákladov daného bytu („Náklady – názov bytu“)."
+      ],
+      "attachments": [
+        {
+          "type": "image",
+          "path": "assets/evidencny-list-ukazka.jpg",
+          "label": "Ukážka evidenčného listu (Spravbyt – Sládkovičova 13, byt č. 3)"
+        }
+      ],
+      "updated_at": "2026-09-23T15:41:00+02:00"
+    },
     {
       "id": "prijem-novej-jednotky",
       "category": "prerabka",
@@ -186,6 +214,13 @@
       "text": "Doplnit postup: vystavenie faktury pre firemneho hosta (aké údaje, kde ju vytvoriť, komu poslať).",
       "source_question": "Ako mám vystaviť faktúru pre firemného hosťa?",
       "date": "2026-08-30T08:36:31.429Z",
+      "status": "navrhnuté"
+    },
+    {
+      "id": "st-0004",
+      "text": "Doplniť postup: ako vytvoriť nový Excel nákladov („Náklady – názov bytu“) pri kúpe bytu.",
+      "source_question": "Ivan: pri kúpe bytu treba založiť nový Excel nákladov – postup ešte doplníme.",
+      "date": "2026-09-23T13:41:29.904Z",
       "status": "navrhnuté"
     }
   ]
