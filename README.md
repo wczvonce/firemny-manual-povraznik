@@ -72,6 +72,15 @@ Uprav `content.json` podľa schémy v `APP_SPEC.md`:
 
 Po úprave stačí obnoviť stránku v prehliadači (server beží ďalej).
 
+### Odkazy v texte postupov
+
+V krokoch (`steps`) aj v texte (`text`) sa dajú písať klikateľné odkazy:
+
+- `[popis](https://adresa)` – zobrazí sa len popis, napr. `Byt dopíš do [Excelu Platby](https://docs.google.com/...)`
+- `https://adresa` – zobrazí sa celá adresa
+
+Povolené sú len adresy `https://`. Odkaz sa otvorí v novej karte.
+
 ## Bezpečnosť
 
 Obsah z `content.json` sa vkladá cez `textContent` / bezpečné DOM API, nie cez

@@ -415,7 +415,7 @@
         n.setAttribute("aria-hidden", "true");
         n.textContent = String(i + 1);
         var p = document.createElement("p");
-        p.textContent = String(step);
+        appendLinkified(p, String(step));
         li.appendChild(n);
         li.appendChild(p);
         ol.appendChild(li);
@@ -429,7 +429,7 @@
         var trimmed = para.trim();
         if (!trimmed) return;
         var p2 = document.createElement("p");
-        p2.textContent = trimmed;
+        appendLinkified(p2, trimmed);
         body.appendChild(p2);
       });
       article.appendChild(body);
@@ -443,6 +443,66 @@
     }
 
     els.viewContent.appendChild(article);
+  }
+
+  /* ---- Klikateľné odkazy v texte ----
+   * Podporované zápisy v content.json:
+   *   [popis](https://adresa)  → odkaz s popisom
+   *   https://adresa           → odkaz, zobrazí sa adresa
+   * Povolené sú LEN adresy https:// (nie javascript:, data:, http: a pod.).
+   * Všetko sa vkladá cez textContent / createElement – žiadne innerHTML. */
+  var LINK_RE = /\[([^\]\n]{1,200})\]\((https:\/\/[^\s)]+)\)|(https:\/\/[^\s<>"„“]+)/g;
+  var TRAILING_PUNCT_RE = /[.,;:!?)\]}'"»“”]+$/;
+
+  function safeHttpsUrl(u) {
+    if (typeof u !== "string" || u.length > 2000) return null;
+    try {
+      var parsed = new URL(u);
+      if (parsed.protocol !== "https:" || !parsed.hostname) return null;
+      return parsed.href;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function makeLink(href, label) {
+    var a = document.createElement("a");
+    a.className = "text-link";
+    a.href = href;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.textContent = label;
+    return a;
+  }
+
+  function appendLinkified(parent, text) {
+    var last = 0;
+    var m;
+    LINK_RE.lastIndex = 0;
+    while ((m = LINK_RE.exec(text)) !== null) {
+      var start = m.index;
+      var end = LINK_RE.lastIndex;
+      var label, url;
+      if (m[1] !== undefined) {
+        label = m[1];
+        url = m[2];
+      } else {
+        url = m[3];
+        var trail = TRAILING_PUNCT_RE.exec(url);
+        if (trail) {
+          url = url.slice(0, url.length - trail[0].length);
+          end -= trail[0].length;
+        }
+        label = url;
+      }
+      var href = safeHttpsUrl(url);
+      if (!href) continue; // neplatná adresa ostane ako obyčajný text
+      if (start > last) parent.appendChild(document.createTextNode(text.slice(last, start)));
+      parent.appendChild(makeLink(href, label));
+      last = end;
+      LINK_RE.lastIndex = end;
+    }
+    if (last < text.length) parent.appendChild(document.createTextNode(text.slice(last)));
   }
 
   // Validácia cesty prílohy: povolená LEN relatívna cesta do assets/.
