@@ -2,7 +2,7 @@
   "meta": {
     "title": "Firemná príručka",
     "lang": "sk",
-    "updated_at": "2026-09-23T15:41:00+02:00"
+    "updated_at": "2026-09-24T20:50:00+02:00"
   },
   "categories": [
     {
@@ -64,6 +64,24 @@
         }
       ],
       "updated_at": "2026-09-23T15:41:00+02:00"
+    },
+    {
+      "id": "naklady-bytu-nahranie-blocku",
+      "category": "prerabka",
+      "title": "Náklady bytu – Excel a nahranie nového bločku / faktúry",
+      "body_type": "steps",
+      "steps": [
+        "Každý byt má vlastný Excel „Náklady – názov bytu“ v Google Drive v priečinku [Podnikanie byty](https://drive.google.com/drive/folders/1oUB2-dIUqT782djByUseYWdiQX5L6Eep). Excel počíta všetko sám – hore vidíš súčty: koľko stála prerábka reálne, koľko sa dá zaúčtovať a koľko stojí byt aj s kúpnou cenou. List „platby“ je hlavný prehľad, list „MOBIL“ ukazuje to isté prehľadne na mobile (iba na čítanie, nič doň nepíš).",
+        "Nový bloček alebo faktúru nahrávame vždy cez AI, nie ručne do Excelu. Sú dve možnosti: agent OpenClaw v Telegrame alebo ChatGPT.",
+        "Možnosť 1 – Telegram: otvor chat s agentom OpenClaw, pošli mu fotku bločku alebo faktúry a napíš, o ktorý byt ide a ako sa platilo (karta / hotovosť / prevod).",
+        "Možnosť 2 – ChatGPT: otvor chat „podnikanie byty“ (je pripnutý navrchu zoznamu chatov), pošli fotku dokladu a napíš, o ktorý byt ide a ako sa platilo.",
+        "Vždy povedz aj typ nákladu, aby ho AI vedela správne zaúčtovať: A = bežný bloček / faktúra tohto bytu (počíta sa do reálnych aj účtovných nákladov) · B = doklad sa stratil, ale reálne zaplatené (iba reálne) · C = bloček z iného bytu zaúčtovaný sem (iba účtovné) · D = vec pre tento byt, ale doklad ide do inej firmy alebo bytu (iba reálne).",
+        "Ak faktúra ešte len príde, je to typ A – AI dá k dokladu „CHÝBA“ a riadok bude v Exceli červený, kým sa faktúra nedoplní. Typ B je len naozaj stratený doklad.",
+        "AI zapíše náklad do Excelu daného bytu (do databázy aj do prehľadu v liste platby).",
+        "Po nahratí vždy skontroluj, či to AI zapísalo správne: otvor Excel bytu (na mobile stačí list MOBIL) a pozri, či tam je nový záznam so správnou sumou, typom a bytom a či sa horné súčty zmenili."
+      ],
+      "attachments": [],
+      "updated_at": "2026-09-24T20:50:00+02:00"
     },
     {
       "id": "prijem-novej-jednotky",
