@@ -2,7 +2,7 @@
   "meta": {
     "title": "Firemná príručka",
     "lang": "sk",
-    "updated_at": "2026-09-24T21:22:00+02:00"
+    "updated_at": "2026-10-06T21:00:00+02:00"
   },
   "categories": [
     {
@@ -10,6 +10,12 @@
       "name": "Prerábka & zariaďovanie",
       "icon": "🛠️",
       "desc": "Príjem jednotiek, materiál, remeselníci"
+    },
+    {
+      "id": "elektrika",
+      "name": "Elektrika",
+      "icon": "⚡",
+      "desc": "Návrh elektriky s Claude, kontrolný zoznam"
     },
     {
       "id": "sprava-booking",
@@ -131,6 +137,63 @@
       ],
       "attachments": [],
       "updated_at": "2026-09-04T10:29:00+02:00"
+    },
+    {
+      "id": "elektro-projekt-s-claude",
+      "category": "elektrika",
+      "title": "Návrh elektriky v byte s Claude – od pôdorysu po PDF pre elektrikára",
+      "body_type": "steps",
+      "steps": [
+        "Elektriku robíme v každom byte rovnako: najprv si ju necháme podrobne navrhnúť v Claude a až hotový projekt (PDF) dostane elektrikár. Elektrikár potom nič nevymýšľa – má presne zakreslené, kde je každé svetlo, zásuvka a vypínač, koľko cm od ktorého rohu a v akej výške. Ukážka hotového projektu z prvého bytu je v prílohe nižšie – takto má vyzerať výsledok v každom byte.",
+        "Čo je Claude: umelá inteligencia (AI) od firmy Anthropic – podobná ako ChatGPT. Píšeš jej normálne po slovensky ako človeku. Vie si pozrieť obrázok alebo fotku (napr. pôdorys), nakresliť do neho elektriku, urobiť pohľady na jednotlivé steny a z celého návrhu PDF. Otvára sa v aplikácii Claude v mobile alebo na [claude.ai](https://claude.ai) v počítači. Ak nemáš prístup, napíš Ivanovi.",
+        "Priprav pôdorys bytu – čo najčitateľnejší (z inzerátu, od správcovskej spoločnosti alebo nakreslený s rozmermi). Do pôdorysu rovno vyznač (perom na vytlačenom pôdoryse a odfoť, alebo kreslením v mobile), kde chceme mať: posteľ (aj akú širokú, napr. 180 cm), nočné stolíky, televízor, gauč, jedálenský stôl, kuchynskú linku, chladničku, sprchu alebo vaňu, umývadlo, práčku, skrine a šatník. Čím viac je v pôdoryse zakreslené, tým lepší a rýchlejší je návrh.",
+        "Pripíš rozmery, ktoré poznáš (šírka kuchyne, šírka kúpeľne, výška stropu), a odfoť dôležité miesta v byte: stúpačky (voda, kúrenie), vetracie otvory vo WC a v kúpeľni, kde je elektromer a rozvádzač, kde vchádza anténa. Ak máme vizualizáciu alebo fotku štýlu (TV stena, kuchyňa, obývačka), pridaj aj tú.",
+        "Nahraj do Claude pôdorys (a fotky) a napíš zadanie. Môžeš skopírovať toto: „Si projektant elektroinštalácie. Na základe tohto pôdorysu navrhni kompletnú elektriku bytu pre elektrikára: svetlá, zásuvky, vypínače, okruhy a LED pásiky. Zakresli ich do pôdorysu a pod obrázok podrobne rozpíš, kde čo je – vždy koľko cm od ktorého rohu a v akej výške. V každej izbe okrem kuchyne bude soklík na záves – stred miestnosti počítaj od hrany soklíka, nie od steny s oknom. Vypínače navrhni logicky: svetlo zapnem pri vstupe a vypnem aj na druhom konci (pri posteli, pri gauči, na druhom konci kuchyne alebo chodby). Nábytok je zakreslený v pôdoryse.“",
+        "Potom Claude postupne vysvetli, čo kde chceš – izbu po izbe, tak ako sme to robili v prvom byte: spálňa (posteľ, lampy nad nočnými stolíkmi, vypínače pri posteli), obývačka (TV stena, gauč, jedálenský stôl a svetlo nad ním), kuchyňa (rozmiestnenie linky – najprv si nechaj dať možnosti, napr. všetko v module 60 cm, a vyber), kúpeľňa (sprcha, umývadlo, práčka – nechaj si overiť, či sa to do šírky zmestí), chodba, šatník, WC. Pošli aj fotky z iného bytu, kde sa ti niečo páči (výška linky, výška zásuviek v kuchyni, hĺbka skriniek) – Claude z nich vyčíta rozmery.",
+        "Keď nevieš, ako je to najlepšie, opýtaj sa: „Ktorá možnosť je najpraktickejšia a prečo?“ alebo „Najprv mi napíš možnosti a ja vyberiem.“ Pri väčšej zmene (napr. otočiť gauč a televízor) si nechaj urobiť variant s porovnaním a do hlavného projektu ho prenes, až keď sa rozhodneš.",
+        "Požiadaj o podrobný projekt po izbách: „Pre každú izbu urob výrez pôdorysu, pohľady na všetky steny a tabuľku zásuviek a vypínačov – koľko cm od ktorého rohu a v akej výške. Pri svetlách a vypínačoch použi písmená okruhov a do legendy napíš, čo ktoré písmeno zapína a ako (schodiskový, krížový vypínač).“",
+        "Keď je návrh hotový, napíš: „Skontroluj celý projekt, či tam nie je chyba, a navrhni, čo ešte chýba.“ Potom s Claude prejdi bod po bode kontrolný zoznam [Elektrika – na čo nezabudnúť](https://wczvonce.github.io/firemny-manual-povraznik/#postup/elektrika-na-co-nezabudnut) a čo chýba, nech doplní.",
+        "Na konci napíš: „Urob z toho jedno PDF na stiahnutie“ – a ak ho chceš otvárať v mobile, aj „urob stránku, z ktorej sa dá PDF stiahnuť do mobilu“. PDF ulož k dokumentom bytu v Google Drive (priečinok [Podnikanie byty](https://drive.google.com/drive/folders/1oUB2-dIUqT782djByUseYWdiQX5L6Eep)). Pri každej zmene si nechaj urobiť novú verziu PDF, aby elektrikár mal vždy tú poslednú.",
+        "Odovzdanie elektrikárovi: pošli mu PDF a prejdite ho spolu priamo v byte ešte pred sekaním. Kóty sú odčítané z pôdorysu – elektrikár ich musí pred sekaním overiť na mieste. Ak niečo na mieste nesedí (stúpačka, nosná stena, iný rozmer), oprav to v Claude a pošli mu novú verziu PDF.",
+        "Pred omietaním odfoť všetky steny s nasekanými káblami (aby sme neskôr vedeli, kade idú káble a kde sa nesmie vŕtať) a fotky ulož k bytu. Na konci musí elektrikár urobiť revíziu elektroinštalácie – revíznu správu ulož k dokumentom bytu."
+      ],
+      "attachments": [
+        {
+          "type": "image",
+          "path": "assets/elektro-ukazka-podorys.jpg",
+          "label": "Ukážka – pôdorys so svetlami, zásuvkami a vypínačmi (prvý byt)"
+        },
+        {
+          "type": "pdf",
+          "path": "assets/elektro-projekt-ukazka.pdf",
+          "label": "Ukážka hotového projektu pre elektrikára – celé PDF (9 strán: pôdorys, legenda, kuchyňa, izby)"
+        }
+      ],
+      "updated_at": "2026-10-06T21:00:00+02:00"
+    },
+    {
+      "id": "elektrika-na-co-nezabudnut",
+      "category": "elektrika",
+      "title": "Elektrika – na čo nezabudnúť (kontrolný zoznam)",
+      "body_type": "steps",
+      "steps": [
+        "Rozvádzač (ističe): rozhodni, kde bude – najlepšie pri vchode (napr. v šatníku alebo v chodbe), aby bol krátky prívod od elektromera. Svetlá, zásuvky v izbách, kuchyňa, práčka, kúpeľňa a indukcia na samostatných ističoch, prúdový chránič 30 mA (ideálne chránič s ističom na každý okruh, aby pri poruche nevypadol celý byt), prepäťová ochrana a voľné miesta do rezervy. Pred rozvádzačom nesmú byť police ani vešiaky.",
+        "Router v strope: schovaný v sadrokartónovom podhľade v chodbe, so zásuvkou v podhľade, revíznym otvorom a vetraním. Z routera LAN kábel k televízoru (podľa potreby aj do izieb).",
+        "Za televízorom veľa zásuviek: aspoň 5 zásuviek + TV anténa + LAN vo výške cca 115 cm (televízor ich zakryje). V TV skrinke v strede ďalšie 4 zásuvky (set-top box, konzola, zdroj LED). Chránička zo skrinky k televízoru na HDMI. LED pásiky pri TV na diaľkový ovládač – zdroj a prijímač v TV skrinke.",
+        "Kúpeľňa – elektrické podlahové kúrenie: termostat na stene ďaleko od sprchy (cca 110 cm), samostatný kábel a istič z rozvádzača, z krabice termostatu 2 chráničky dolu do podlahy (pre snímač teploty a pre kábel rohože). Rohož ide pod dlažbu len na voľnú podlahu, nie pod práčku a skrinky.",
+        "Kúpeľňa – zásuvky a svetlá: zásuvky najmenej 60 cm od sprchy alebo vane, krytie IP44, všetko cez prúdový chránič 30 mA. Zásuvka pri umývadle (fén), zásuvka pre práčku, svetlo nad zrkadlom.",
+        "Ventilátor vo WC aj v kúpeľni: pri vetracom otvore prívod 4-žilovým káblom (stála fáza, fáza zo svetla, nulák, PE) – aby sa dal dať ventilátor s dobehom (beží so svetlom a chvíľu po vypnutí) alebo s vlhkostným senzorom.",
+        "Kuchyňa: najprv rozloženie linky (drez, umývačka, indukcia, chladnička, potravinová skriňa), až potom zásuvky. Nezabudni: umývačka, indukcia + rúra (400 V), digestor, chladnička, zásuvky nad pracovnou doskou na oboch stranách (cca 30 cm nad doskou), vypínač svetla pri oboch vstupoch do kuchyne, LED pod hornými skrinkami a predpríprava na mikrovlnku. Stropné svetlo mimo dosahu otvorených dvierok horných skriniek.",
+        "Spálňa: pri oboch nočných stolíkoch zásuvka + vypínač v jednom rámiku (cca 70 cm), vývody na závesné lampy nad stolíkmi, hlavné svetlo sa musí dať vypnúť aj z postele. Hlavné svetlo dávame do osi postele.",
+        "Svetlá v izbách: stred miestnosti počítaj od hrany soklíka na záves, nie od steny s oknom. Nad jedálenským stolom vývod na závesné svetlo. Svietidlo nesmie prekážať dvierkam nábytku – pozri [Umiestnenie závesných svietidiel pri nábytku](https://wczvonce.github.io/firemny-manual-povraznik/#postup/umiestnenie-zavesnych-svietidiel).",
+        "Vypínače: svetlo sa musí dať zapnúť pri vstupe a vypnúť aj na druhom konci (chodba, obývačka, kuchyňa s dvoma dverami, spálňa pri posteli). Pri dverách vo výške 110 cm, na strane kľučky, cca 15 cm od zárubne.",
+        "Gauč: vypínač nad gaučom, zásuvka vedľa gauča, prípadne LED nad gaučom. Záves nesmie visieť cez gauč – gauč odsadiť od steny s oknom (cca 15 cm).",
+        "Šatník: svetlo na vypínač a zásuvka. Pri rúrach kúrenia (stúpačky) dodrž s krabicami aj káblami odstup aspoň 20 cm.",
+        "Zváž podľa bytu: zvonček alebo videotelefón pri vchode, svetlo a zásuvka na balkóne, kábel do soklíka na LED alebo motorické závesy, LAN do detskej alebo pracovne. Staré hliníkové rozvody v paneláku pri kompletnej prerábke vymeniť za nové medené.",
+        "Na konci: fotky stien s káblami pred omietaním, revízna správa od elektrikára a posledná verzia PDF projektu uložené k dokumentom bytu."
+      ],
+      "attachments": [],
+      "updated_at": "2026-10-06T21:00:00+02:00"
     },
     {
       "id": "checkin-hosta",
