@@ -67,6 +67,11 @@ Uprav `content.json` podľa schémy v `APP_SPEC.md`:
   (reťazec), voliteľne `attachments`.
 - **Prílohy** (`attachments`): `type` ∈ `pdf | image | video | audio`, `path`
   (napr. `assets/subor.pdf`), `label`. Súbor musí reálne existovať v `assets/`.
+  Pri obrázku sú voliteľné:
+  - `alt` – krátky alternatívny text (inak sa použije `label`),
+  - `step` – číslo kroku (od 1); obrázok sa potom zobrazí **priamo pod týmto krokom**
+    v plnej šírke, `label` ako popis pod ním, klik ho zväčší. Bez `step` ide obrázok
+    do sekcie „Prílohy" na konci postupu.
 - **Navrhované úlohy** (`suggested_tasks`): `id`, `text`, `source_question`,
   `date`, `status`.
 
@@ -80,6 +85,19 @@ V krokoch (`steps`) aj v texte (`text`) sa dajú písať klikateľné odkazy:
 - `https://adresa` – zobrazí sa celá adresa
 
 Povolené sú len adresy `https://`. Odkaz sa otvorí v novej karte.
+
+### Odseky a odrážky v kroku
+
+Krok môže mať viac riadkov (`\n` v reťazci kroku):
+
+- prázdny riadok (`\n\n`) = nový odsek,
+- riadok začínajúci `– ` = odrážka,
+- krok bez `\n` sa zobrazí ako doteraz (jeden odsek).
+
+### Zväčšenie obrázkov
+
+Klik na obrázok ho otvorí cez celú obrazovku. Vysoké snímky obrazovky z mobilu sa
+nezmenšia, ale zobrazia sa širšie a dajú sa posúvať zhora nadol.
 
 ## Bezpečnosť
 

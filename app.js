@@ -311,7 +311,7 @@
     if (s.normalize) {
       s = s.normalize("NFD").replace(/[̀-ͯ]/g, "");
     }
-    return s;
+    return s.replace(/\s+/g, " "); // zalomenie riadku v kroku = medzera
   }
 
   function makeSearchEmpty(q) {
@@ -404,7 +404,22 @@
       article.appendChild(pill);
     }
 
-    if (item.body_type === "steps" && Array.isArray(item.steps)) {
+    var attachments = Array.isArray(item.attachments) ? item.attachments : [];
+    var isSteps = item.body_type === "steps" && Array.isArray(item.steps);
+    // Obrázok s "step": N sa zobrazí priamo pod krokom N; ostatné prílohy idú do sekcie „Prílohy".
+    var stepImages = {};
+    var restAttachments = [];
+    attachments.forEach(function (att) {
+      var n = att && att.step;
+      if (isSteps && att && att.type === "image" && typeof n === "number" && n % 1 === 0 &&
+          n >= 1 && n <= item.steps.length && safeAssetPath(att.path)) {
+        (stepImages[n] = stepImages[n] || []).push(att);
+      } else {
+        restAttachments.push(att);
+      }
+    });
+
+    if (isSteps) {
       var ol = document.createElement("ol");
       ol.className = "steps";
       item.steps.forEach(function (step, i) {
@@ -414,10 +429,15 @@
         n.className = "n";
         n.setAttribute("aria-hidden", "true");
         n.textContent = String(i + 1);
-        var p = document.createElement("p");
-        appendLinkified(p, String(step));
         li.appendChild(n);
-        li.appendChild(p);
+        li.appendChild(makeStepBody(String(step)));
+        var imgs = stepImages[i + 1];
+        if (imgs) {
+          li.classList.add("has-figure");
+          imgs.forEach(function (att) {
+            li.appendChild(makeStepFigure(safeAssetPath(att.path), att.alt || att.label, att.label));
+          });
+        }
         ol.appendChild(li);
       });
       article.appendChild(ol);
@@ -437,12 +457,95 @@
       article.appendChild(makeEmpty("Táto položka nemá obsah."));
     }
 
-    var attachments = Array.isArray(item.attachments) ? item.attachments : [];
-    if (attachments.length) {
-      article.appendChild(renderAttachments(attachments));
+    if (restAttachments.length) {
+      article.appendChild(renderAttachments(restAttachments));
     }
 
     els.viewContent.appendChild(article);
+  }
+
+  /* ---- Text kroku ----
+   * Krok bez zalomení riadkov sa vykreslí ako doteraz (jeden odsek).
+   * Krok so zalomeniami ("\n"): prázdny riadok = nový odsek, riadky začínajúce
+   * „– " (alebo „- ") = odrážky. Všetko cez createElement/textContent. */
+  var BULLET_RE = /^\s*[–-]\s+/;
+
+  function makeStepBody(text) {
+    if (text.indexOf("\n") === -1) {
+      var p = document.createElement("p");
+      appendLinkified(p, text);
+      return p;
+    }
+    var body = document.createElement("div");
+    body.className = "step-body";
+    var para = null;
+    var list = null;
+    text.split("\n").forEach(function (line) {
+      if (!line.trim()) {
+        para = null;
+        list = null;
+        return;
+      }
+      if (BULLET_RE.test(line)) {
+        para = null;
+        if (!list) {
+          list = document.createElement("ul");
+          list.className = "step-list";
+          body.appendChild(list);
+        }
+        var li = document.createElement("li");
+        appendLinkified(li, line.replace(BULLET_RE, ""));
+        list.appendChild(li);
+        return;
+      }
+      list = null;
+      if (para) {
+        para.appendChild(document.createElement("br"));
+      } else {
+        para = document.createElement("p");
+        body.appendChild(para);
+      }
+      appendLinkified(para, line.trim());
+    });
+    return body;
+  }
+
+  /* Obrázok priamo pri kroku: náhľad v plnej šírke karty, popis pod ním, klik = zväčšenie. */
+  function makeStepFigure(path, alt, caption) {
+    var altText = alt || "Obrázok ku kroku";
+    var fig = document.createElement("figure");
+    fig.className = "step-figure";
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "step-img-btn";
+    btn.setAttribute("aria-label", "Zväčšiť obrázok: " + altText);
+
+    var img = document.createElement("img");
+    img.src = path;
+    img.alt = altText;
+    img.loading = "lazy";
+    img.decoding = "async";
+    btn.appendChild(img);
+
+    var zoom = document.createElement("span");
+    zoom.className = "step-zoom";
+    zoom.setAttribute("aria-hidden", "true");
+    zoom.textContent = "🔍 Zväčšiť obrázok";
+    btn.appendChild(zoom);
+
+    btn.addEventListener("click", function () {
+      openLightbox(path, altText, img.getBoundingClientRect().width);
+    });
+    fig.appendChild(btn);
+
+    if (caption) {
+      var cap = document.createElement("figcaption");
+      cap.className = "step-figcaption";
+      cap.textContent = caption;
+      fig.appendChild(cap);
+    }
+    return fig;
   }
 
   /* ---- Klikateľné odkazy v texte ----
@@ -553,7 +656,7 @@
         a.appendChild(name);
         li.appendChild(a);
       } else if (type === "image" && safePath) {
-        li.appendChild(makeImageAttachment(safePath, label));
+        li.appendChild(makeImageAttachment(safePath, label, att.alt));
       } else if (type === "video" || type === "audio") {
         var isVideo = type === "video";
         var chip = document.createElement("div");
@@ -595,11 +698,11 @@
     return wrap;
   }
 
-  function makeImageAttachment(path, label) {
+  function makeImageAttachment(path, label, altText) {
     var btn = document.createElement("button");
     btn.type = "button";
     btn.className = "att-thumb";
-    var alt = label || "Obrázok prílohy";
+    var alt = altText || label || "Obrázok prílohy";
     btn.setAttribute("aria-label", "Zväčšiť obrázok: " + alt);
 
     var img = document.createElement("img");
@@ -616,22 +719,51 @@
     }
 
     btn.addEventListener("click", function () {
-      openLightbox(path, alt);
+      openLightbox(path, alt, img.getBoundingClientRect().width);
     });
     return btn;
   }
 
-  /* ---- Lightbox ---- */
-  function openLightbox(src, alt) {
+  /* ---- Lightbox ----
+   * Štandardne sa obrázok zmestí na obrazovku. Ak by sa tým nezväčšil oproti náhľadu
+   * (typicky vysoká snímka obrazovky z mobilu), zobrazí sa širší a dá sa posúvať zvisla. */
+  function openLightbox(src, alt, shownWidth) {
     lightbox.lastFocus = document.activeElement;
+    resetLightboxMode();
+    lightbox.img.onload = function () { fitLightbox(shownWidth); };
     lightbox.img.src = src;
     lightbox.img.alt = alt || "";
     lightbox.root.classList.remove("hidden");
+    if (lightbox.img.complete && lightbox.img.naturalWidth) fitLightbox(shownWidth);
     lightbox.closeBtn.focus();
+  }
+
+  function fitLightbox(shownWidth) {
+    var nw = lightbox.img.naturalWidth;
+    var nh = lightbox.img.naturalHeight;
+    if (!nw || !nh || lightbox.root.classList.contains("hidden")) return;
+    var vw = document.documentElement.clientWidth || window.innerWidth;
+    var vh = window.innerHeight;
+    // Šírka v režime „zmestiť na obrazovku" (zhodne s max-width 90vw / max-height 82vh v CSS).
+    var fitWidth = Math.min(nw, vw * 0.9, (vh * 0.82 * nw) / nh);
+    var shown = shownWidth || 0;
+    if (fitWidth >= shown * 1.15) return;
+    var width = Math.min(vw - 32, Math.max(nw, shown * 1.5));
+    lightbox.root.classList.add("lightbox--scroll");
+    lightbox.img.style.width = Math.round(width) + "px";
+    lightbox.root.scrollTop = 0;
+  }
+
+  function resetLightboxMode() {
+    lightbox.root.classList.remove("lightbox--scroll");
+    lightbox.img.style.width = "";
+    lightbox.img.onload = null;
+    lightbox.root.scrollTop = 0;
   }
 
   function closeLightbox() {
     lightbox.root.classList.add("hidden");
+    resetLightboxMode();
     lightbox.img.src = "";
     lightbox.img.alt = "";
     if (lightbox.lastFocus && typeof lightbox.lastFocus.focus === "function") {

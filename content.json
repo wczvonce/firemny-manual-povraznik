@@ -2,7 +2,7 @@
   "meta": {
     "title": "Firemná príručka",
     "lang": "sk",
-    "updated_at": "2026-10-07T10:00:00+02:00"
+    "updated_at": "2026-10-19T09:51:00+02:00"
   },
   "categories": [
     {
@@ -214,6 +214,38 @@
       "updated_at": "2026-10-07T10:00:00+02:00"
     },
     {
+      "id": "elektricke-podlahove-kurenie-kupelna",
+      "category": "elektrika",
+      "title": "Elektrické podlahové kúrenie v kúpeľni – výpočet plochy a objednanie",
+      "body_type": "steps",
+      "steps": [
+        "Prečo plánujeme podlahové kúrenie: elektrické podlahové kúrenie v kúpeľni plánujeme pre komfort ľudí – aby mali príjemnú teplú podlahu. Pri malej kúpeľni ho zvažujeme ako cenovo dostupný doplnok; konkrétnu cenu si nechaj potvrdiť dodávateľom. Počítaj s ním už pri príprave prerábky.",
+        "Zisti rozmery podľa projektu. Z projektu prevezmi vnútornú dĺžku a šírku kúpeľne. Zakresli sprchový kút, práčku a umývadlovú skrinku.\n\nPri práčke môžeš na predbežný výpočet počítať s rozmerom 60 × 60 cm. Pred objednaním over konkrétny model. Rozmery sprchy a umývadlovej skrinky prevezmi z projektu a over ich podľa vybraného vybavenia.\n\nSkontroluj, či projekt počíta s hotovými rozmermi po obložení. Do nákresu zaznač aj dvere a smer ich otvárania. Chýbajúce rozmery nehádaj – zisti ich pred odoslaním podkladov dodávateľovi.",
+        "Preveď centimetre na metre a vypočítaj plochu. Rozmer v centimetroch vydeľ číslom 100. Príklady:\n– 155 cm ÷ 100 = 1,55 m.\n– 220 cm ÷ 100 = 2,20 m.\n– 60 cm ÷ 100 = 0,60 m.\n\nPlocha obdĺžnika v m² = dĺžka v metroch × šírka v metroch.\n\nOd celkovej plochy kúpeľne odpočítaj plochu sprchového kúta, práčky a umývadlovej skrinky. Tieto plochy počítaj samostatne, aby sa neodpočítali dvakrát. Výsledkom je voľná plocha, ktorú pošleš dodávateľovi na návrh rohože.",
+        "Konkrétny príklad – kúpeľňa na Sládkovičovej: rozmery sú len z tejto kúpeľne, v inom byte vychádzaj z jeho projektu. Podľa podkladov od Iva:\n– Celá kúpeľňa: 155 × 220 cm = 1,55 × 2,20 m = 3,410 m².\n– Sprchový kút: 155 × 90 cm = 1,55 × 0,90 m = 1,395 m².\n– Práčka: 60 × 60 cm = 0,60 × 0,60 m = 0,360 m².\n– Umývadlová skrinka: 70 × 60 cm = 0,70 × 0,60 m = 0,420 m².\n\nVýpočet voľnej plochy: 3,410 − 1,395 − 0,360 − 0,420 = 1,235 m².\n\nV tejto dispozícii voľná podlaha tvorí obdĺžnik 95 × 130 cm. Kontrolný výpočet: 0,95 × 1,30 = 1,235 m².",
+        "Pošli podklady do SIKA. Voľná plocha podlahy nie je automaticky veľkosť objednávanej rohože. Rohož sa musí do priestoru zmestiť svojimi rozmermi a rozložením pri dodržaní pokynov výrobcu.\n\nDo SIKA pošli:\n– pôdorys kúpeľne s rozmermi;\n– polohu a rozmery sprchy, práčky a umývadlovej skrinky;\n– vyznačenú voľnú plochu a jej rozmery;\n– informáciu o plánovanej podlahovej krytine;\n– požiadavku na presný návrh vykurovacej rohože a kompatibilného moderného termostatu s displejom.\n\nPre Sládkovičovu je voľný priestor 95 × 130 cm, teda 1,235 m². Náš predbežný návrh je rohož 0,8 m². Nejde o potvrdenú veľkosť na objednanie – presný návrh pripraví SIKO.",
+        "Pred objednaním potvrď výrobky a cenu. Od SIKA si nechaj potvrdiť:\n– konkrétny typ, rozmery, plochu a výkon navrhovanej rohože;\n– vhodný moderný termostat s displejom a kompatibilný podlahový snímač;\n– čo je súčasťou dodávky a čo treba dokúpiť;\n– celkovú cenu a dostupnosť materiálu.\n\nKonkrétny termostat odsúhlas pred nákupom. Rohož neobjednávaj iba podľa vlastného výpočtu voľnej plochy alebo predbežného obrázka.",
+        "Zlaď elektrikára a obkladača. Potvrdený návrh odovzdaj elektrikárovi a obkladačovi ešte pred realizáciou podlahy. Dohodni:\n– kto zabezpečí jednotlivé časti prípravy a montáže;\n– umiestnenie termostatu a potrebnú prípravu podľa vybraného systému;\n– termín dodania materiálu a nadväznosť prác;\n– kto zabezpečí kontrolu a odovzdanie funkčného kúrenia.\n\nTechnické riešenie a samotnú realizáciu nechaj na remeselníkov podľa potvrdeného návrhu a pokynov výrobcu."
+      ],
+      "attachments": [
+        {
+          "type": "image",
+          "path": "assets/chatgpt-vypocet-vymery-podlahoveho-kurenia.jpg",
+          "label": "Výpočet pripravený v ChatGPT podľa podkladov od Iva – kúpeľňa na Sládkovičovej. Voľná plocha je 1,235 m². Zobrazená rohož 0,8 m² je iba predbežný návrh, ktorý musí potvrdiť alebo upraviť SIKO.",
+          "alt": "Výpočet z ChatGPT: nákres kúpeľne, voľná plocha 95 × 130 cm (1,235 m²), predbežná rohož 0,8 m²",
+          "step": 4
+        },
+        {
+          "type": "image",
+          "path": "assets/siko-objednavka.jpg",
+          "label": "Príklad zadania odoslaného do SIKA – nákres voľného priestoru 95 × 130 cm a požiadavka na moderný termostat. SIKO podľa podkladov pripraví presný návrh. Nejde o potvrdenú objednávku.",
+          "alt": "Správa do SIKA: nákres voľného priestoru 95 × 130 cm a požiadavka na moderný termostat",
+          "step": 5
+        }
+      ],
+      "updated_at": "2026-10-19T09:51:00+02:00"
+    },
+    {
       "id": "elektrika-na-co-nezabudnut",
       "category": "elektrika",
       "title": "Elektrika – na čo nezabudnúť (kontrolný zoznam)",
@@ -222,7 +254,7 @@
         "Rozvádzač (ističe): rozhodni, kde bude – najlepšie pri vchode (napr. v šatníku alebo v chodbe), aby bol krátky prívod od elektromera. Svetlá, zásuvky v izbách, kuchyňa, práčka, kúpeľňa a indukcia na samostatných ističoch, prúdový chránič 30 mA (ideálne chránič s ističom na každý okruh, aby pri poruche nevypadol celý byt), prepäťová ochrana a voľné miesta do rezervy. Pred rozvádzačom nesmú byť police ani vešiaky.",
         "Router v strope: schovaný v sadrokartónovom podhľade v chodbe, so zásuvkou v podhľade, revíznym otvorom a vetraním. Z routera LAN kábel k televízoru (podľa potreby aj do izieb).",
         "Za televízorom veľa zásuviek: aspoň 5 zásuviek + TV anténa + LAN vo výške cca 115 cm (televízor ich zakryje). V TV skrinke v strede ďalšie 4 zásuvky (set-top box, konzola, zdroj LED). Chránička zo skrinky k televízoru na HDMI. LED pásiky pri TV na diaľkový ovládač – zdroj a prijímač v TV skrinke.",
-        "Kúpeľňa – elektrické podlahové kúrenie: termostat na stene ďaleko od sprchy (cca 110 cm), samostatný kábel a istič z rozvádzača, z krabice termostatu 2 chráničky dolu do podlahy (pre snímač teploty a pre kábel rohože). Rohož ide pod dlažbu len na voľnú podlahu, nie pod práčku a skrinky.",
+        "Kúpeľňa – elektrické podlahové kúrenie: termostat na stene ďaleko od sprchy (cca 110 cm), samostatný kábel a istič z rozvádzača, z krabice termostatu 2 chráničky dolu do podlahy (pre snímač teploty a pre kábel rohože). Rohož ide pod dlažbu len na voľnú podlahu, nie pod práčku a skrinky. Výpočet voľnej plochy a objednanie rohože: [Elektrické podlahové kúrenie v kúpeľni – výpočet plochy a objednanie](https://wczvonce.github.io/firemny-manual-povraznik/#postup/elektricke-podlahove-kurenie-kupelna).",
         "Kúpeľňa – zásuvky a svetlá: zásuvky najmenej 60 cm od sprchy alebo vane, krytie IP44, všetko cez prúdový chránič 30 mA. Zásuvka pri umývadle (fén), zásuvka pre práčku, svetlo nad zrkadlom.",
         "Ventilátor vo WC aj v kúpeľni: pri vetracom otvore prívod 4-žilovým káblom (stála fáza, fáza zo svetla, nulák, PE) – aby sa dal dať ventilátor s dobehom (beží so svetlom a chvíľu po vypnutí) alebo s vlhkostným senzorom.",
         "Kuchyňa: najprv rozloženie linky (drez, umývačka, indukcia, chladnička, potravinová skriňa), až potom zásuvky. Nezabudni: umývačka, indukcia + rúra (400 V), digestor, chladnička, zásuvky nad pracovnou doskou na oboch stranách (cca 30 cm nad doskou), vypínač svetla pri oboch vstupoch do kuchyne, LED pod hornými skrinkami a predpríprava na mikrovlnku. Stropné svetlo mimo dosahu otvorených dvierok horných skriniek.",
@@ -236,7 +268,7 @@
         "Na konci: fotky stien s káblami pred omietaním, revízna správa od elektrikára a posledná verzia PDF projektu uložené k dokumentom bytu."
       ],
       "attachments": [],
-      "updated_at": "2026-10-07T10:00:00+02:00"
+      "updated_at": "2026-10-19T09:51:00+02:00"
     },
     {
       "id": "checkin-hosta",
