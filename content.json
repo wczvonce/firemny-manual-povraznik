@@ -2,7 +2,7 @@
   "meta": {
     "title": "Firemná príručka",
     "lang": "sk",
-    "updated_at": "2026-10-19T09:51:00+02:00"
+    "updated_at": "2026-11-11T18:00:00+01:00"
   },
   "categories": [
     {
@@ -16,6 +16,12 @@
       "name": "Elektrika",
       "icon": "⚡",
       "desc": "Návrh elektriky s Claude, kontrolný zoznam"
+    },
+    {
+      "id": "predaj",
+      "name": "Predaj bytov",
+      "icon": "🏷️",
+      "desc": "Inzercia, topovanie, doklady"
     },
     {
       "id": "sprava-booking",
@@ -348,6 +354,33 @@
       ],
       "attachments": [],
       "updated_at": "2026-09-04T09:27:00+02:00"
+    },
+    {
+      "id": "inzercia-predaj-bytu",
+      "category": "predaj",
+      "title": "Inzercia bytu na predaj – nehnutelnosti.sk a Bazoš (topovanie, doklady, náklady)",
+      "body_type": "steps",
+      "steps": [
+        "Text inzerátu priprav podľa [vzoru – byt Mládežnícka](https://wczvonce.github.io/firemny-manual-povraznik/#postup/vzor-inzeratu-mladeznicka). Je to príklad – pri inom byte uprav výmeru, poschodie (napr. „8. poschodie z 10“), vybavenie a lokalitu podľa skutočnosti.",
+        "Každú vec v texte skontroluj podľa bytu a fotiek. V inzeráte nesmie byť nič, čo v byte nie je (napr. mikrovlnka, vaňa, drevené lamely).\n\n– Na začiatku inzerátu vždy zdôrazni (výkričníkmi), že fotky sú skutočný stav bytu a nie vizualizácie.\n– Na konci nechaj vetu pre realitné kancelárie – volať môžu, ale len s konkrétnym klientom.\n– Predajnú cenu a náklady do textu nepíšeme.",
+        "Nehnutelnosti.sk: vlož dlhú verziu textu, nadpis a fotky. Inzerát topujeme – topovanie stojí cca 59 €.",
+        "Po zaplatení topovania na nehnutelnosti.sk si faktúru stiahni priamo na stránke nehnutelnosti.sk.",
+        "Bazoš.sk: vlož inzerát v sekcii Reality. Pozor na limity:\n\n– nadpis max. 60 znakov,\n– text max. 3 000 znakov – dlhší text Bazoš potichu odsekne, preto na Bazoš použi kratšiu verziu (skrátený odsek o lokalite, je pri vzore),\n– vyplň PSČ bytu (Mládežnícka = 974 04).",
+        "Na Bazoši topujeme 9× – stojí to cca 17,91 €. Inzerát sa tým posunie o 30 dní dopredu (7 + 6 + 5 + 4 + 3 + 2 + 1 + 1 + 1). Zjednodušený daňový doklad si stiahni hneď pri zaplatení – nečakaj s tým na neskôr.",
+        "Všetky doklady (faktúru z nehnutelnosti.sk aj doklad z Bazoša) nahraj do Excelu nákladov príslušného bytu – presne podľa postupu [Náklady bytu – nahranie bločku / faktúry](https://wczvonce.github.io/firemny-manual-povraznik/#postup/naklady-bytu-nahranie-blocku). Typ nákladu je A (doklad tohto bytu).",
+        "Dobré vedieť:\n\n– Topovanie neznamená garantované prvé miesto – inzerát, ktorý niekto topuje viackrát, ho môže predbehnúť.\n– Inzerát na Bazoši vydrží 2 mesiace, topovanie ho nepredĺži.\n– Keď vo výpise na Bazoši vidíš niektoré slová hrubým písmom, je to len zvýraznenie toho, čo bolo zadané vo vyhľadávaní. V inzeráte netreba nič meniť."
+      ],
+      "attachments": [],
+      "updated_at": "2026-11-11T18:00:00+01:00"
+    },
+    {
+      "id": "vzor-inzeratu-mladeznicka",
+      "category": "predaj",
+      "title": "Vzor inzerátu – 3-izbový byt Mládežnícka (príklad na skopírovanie)",
+      "body_type": "text",
+      "text": "PRÍKLAD – takto vyzerá finálny inzerát bytu Mládežnícka 43 (dlhá verzia, ktorú dávame na nehnutelnosti.sk). Pri inom byte skopíruj text a zmeň údaje a vybavenie podľa skutočnosti – v inzeráte nesmie byť nič, čo v byte naozaj nie je.\n\nNADPIS (zmestí sa aj na Bazoš, max. 60 znakov): Dizajnový 3-izbový byt s balkónom a nábytkom na mieru\n\nTEXT INZERÁTU:\n\nVšetky fotografie v inzeráte zachytávajú skutočný stav bytu – nejde o vizualizácie ani ilustračné zábery! Byt naozaj vyzerá presne tak, ako ho vidíte na fotografiách!\n\nPonúkame na predaj krásny 3-izbový byt na Mládežníckej ulici v Banskej Bystrici. Spája moderný dizajn, pohodlie a výnimočne praktické riešenia. Byt sa nachádza na 8. poschodí z 10 a má 65,3 m². Všetky izby sú nepriechodné. K bytu patrí aj pivnica.\n\nJednou z jeho najväčších predností je obrovské množstvo úložného priestoru. Nábytok bol vyrobený stolárom presne na mieru, aby bol dokonale využitý každý centimeter. Úložné priestory nájdete v kuchyni, chodbe, spálni, obývačke, kúpeľni, na toalete aj priamo v posteli.\n\nModerná kuchynská linka na mieru je kompletne vybavená vstavanými spotrebičmi – nechýba indukčná varná doska, rúra, umývačka riadu, chladnička ani digestor. Praktickým detailom je flexibilná batéria a zabudovaný dávkovač na saponát priamo pri dreze.\n\nObývacej izbe dominuje podsvietená dizajnová TV stena, rozkladacia sedačka a komoda s ďalším úložným priestorom. Komfort bol premyslený do detailu – priamo nad sedačkou je vypínač osvetlenia, takže svetlo môžete pohodlne zhasnúť aj počas oddychu bez vstávania. Jedálenskú časť tvorí okrúhly stôl s kvalitnými, drahšími a mimoriadne pohodlnými otočnými stoličkami. Z obývacej izby je prístup na balkón s príjemným výhľadom.\n\nSpálňa ponúka veľkú vstavanú skriňu, posteľ s úložným priestorom a nadštandardne kvalitný a drahý matrac. Nechýba toaletný stolík vhodný aj na prácu alebo líčenie a LED zrkadlo.\n\nTretia samostatná izba je zámerne ponechaná nezariadená, aby si ju nový majiteľ mohol prispôsobiť ako detskú izbu, pracovňu, hosťovskú izbu alebo ďalšiu spálňu.\n\nKúpeľňa má podlahové kúrenie, sprchový kút, podomietkové batérie, LED zrkadlo s tromi režimami osvetlenia a skrinku pod umývadlom. WC je samostatné, vybavené systémom Geberit a ďalším úložným priestorom. V chodbe sa nachádzajú bezpečnostné dvere, veľké zrkadlo a priestranná vstavaná skriňa.\n\nCelý byt dopĺňa vodeodolná plávajúca podlaha, LED pásy a svietidlá s možnosťou meniť farbu svetla od studenej po teplú. Vo všetkých izbách sú kvalitné závesy vyrobené presne na mieru. Praktickým a estetickým detailom je aj Wi-Fi router ukrytý v strope, takže nenarúša čistý vzhľad interiéru.\n\nVýborná je aj poloha bytu. Mládežnícka patrí medzi obľúbené a zelené časti Banskej Bystrice (Radvaň – Fončorda). V blízkosti sú materské a základné školy, ZUŠ, gymnázium, obchody a služby, detské a športové ihriská aj zastávka MHD. Centrum mesta aj Park pod Pamätníkom SNP sú v pešej dostupnosti a nákupné centrum Europa je len pár minút cesty.\n\nByt je ideálny pre niekoho, kto hľadá štýlové a pohodlné bývanie bez nutnosti ďalších investícií. Stačí sa nasťahovať a začať si užívať domov, v ktorom bolo všetko premyslené do posledného detailu. Budete prvými obyvateľmi bytu po jeho kompletnej rekonštrukcii.\n\nRealitné kancelárie prosím nevolajte s ponukou sprostredkovania predaja – ozvite sa iba v prípade, že máte konkrétneho klienta so záujmom o tento byt.\n\nKRATŠIA VERZIA NA BAZOŠ (text max. 3 000 znakov, dlhší Bazoš odsekne): odsek o lokalite nahraď týmto – „Výborná je aj poloha – Mládežnícka patrí medzi obľúbené a zelené časti Banskej Bystrice. V okolí sú školy, škôlky, obchody, ihriská aj zastávka MHD a centrum mesta je v pešej dostupnosti.“ a poslednú vetu nahraď týmto – „Realitné kancelárie prosím nevolajte s ponukou sprostredkovania – ozvite sa iba s konkrétnym klientom.“ Takto má text cca 2 840 znakov.\n\nPSČ Mládežnícka: 974 04.",
+      "attachments": [],
+      "updated_at": "2026-11-11T18:00:00+01:00"
     }
   ],
   "suggested_tasks": [
